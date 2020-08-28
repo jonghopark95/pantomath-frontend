@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const Nav = styled.nav`
@@ -33,39 +34,71 @@ const TabImg = styled.div`
   }
 `;
 
-const TabContainer = styled.div`
+const TabLink = styled(Link)`
   height: 7%;
   width: 100%;
-  /* background-color: whitesmoke; */
   display: flex;
+  text-decoration: none;
   :hover {
     cursor: pointer;
-    ${Tab}, ${TabImg} {
+    ${Tab}, ${TabImg} > svg {
       color: #1a67d2;
     }
   }
 `;
 
 const TabList = [
-  { imgTag: <i class="fas fa-globe"></i>, title: "주요 뉴스" },
-  { imgTag: <i class="far fa-user"></i>, title: "추천 뉴스" },
-  { imgTag: <i class="fas fa-balance-scale"></i>, title: "정치" },
-  { imgTag: <i class="fas fa-won-sign"></i>, title: "경제" },
-  { imgTag: <i class="fas fa-users"></i>, title: "사회" },
-  { imgTag: <i class="fas fa-theater-masks"></i>, title: "문화" },
-  { imgTag: <i class="fas fa-flag-usa"></i>, title: "국제" },
-  { imgTag: <i class="far fa-building"></i>, title: "지역" },
-  { imgTag: <i class="fas fa-running"></i>, title: "스포츠" },
-  { imgTag: <i class="fas fa-atom"></i>, title: "IT 과학" },
+  { link: "/", imgTag: <i class="fas fa-globe"></i>, title: "주요 뉴스" },
+  {
+    link: "/recommend",
+    imgTag: <i class="far fa-user"></i>,
+    title: "추천 뉴스",
+  },
+  {
+    link: "/categories",
+    imgTag: <i class="fas fa-balance-scale"></i>,
+    title: "정치",
+  },
+  {
+    link: "/categories",
+    imgTag: <i class="fas fa-won-sign"></i>,
+    title: "경제",
+  },
+  { link: "/categories", imgTag: <i class="fas fa-users"></i>, title: "사회" },
+  {
+    link: "/categories",
+    imgTag: <i class="fas fa-theater-masks"></i>,
+    title: "문화",
+  },
+  {
+    link: "/categories",
+    imgTag: <i class="fas fa-flag-usa"></i>,
+    title: "국제",
+  },
+  {
+    link: "/categories",
+    imgTag: <i class="far fa-building"></i>,
+    title: "지역",
+  },
+  {
+    link: "/categories",
+    imgTag: <i class="fas fa-running"></i>,
+    title: "스포츠",
+  },
+  {
+    link: "/categories",
+    imgTag: <i class="fas fa-atom"></i>,
+    title: "IT 과학",
+  },
 ];
 
 export default () => (
   <Nav>
     {TabList.map((tab) => (
-      <TabContainer>
+      <TabLink to={tab.link}>
         <TabImg>{tab.imgTag}</TabImg>
         <Tab>{tab.title}</Tab>
-      </TabContainer>
+      </TabLink>
     ))}
   </Nav>
 );

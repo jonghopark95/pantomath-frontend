@@ -6,15 +6,20 @@ import {
   Redirect,
 } from "react-router-dom";
 
-import MainNews from "./Screen/MainNews";
-import RecommendNews from "./Screen/RecommendNews";
+import MainNews from "./Components/Screen/MainNews";
+import RecommendNews from "./Components/Screen/RecommendNews";
+import Categories from "./Components/Screen/Categories";
+import Nav from "./Components/Nav";
 
 export default () => {
   return (
     <Router>
+      <Nav />
       <Switch>
         <Route exact path="/" component={MainNews} />
-        <Route exact path="/recommend" component={RecommendNews} />
+        <Route path="/recommend" component={RecommendNews} />
+        <Route path="/categories" component={Categories} />
+
         {/* <Route exact path="/categories/politics" component={} />
         <Route exact path="/categories/economics" component={} />
         <Route exact path="/categories/society" component={} />

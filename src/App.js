@@ -1,8 +1,8 @@
 import React from "react";
-import Router from "./Components/Router";
 import Nav from "./Components/Nav";
 import styled from "styled-components";
 import TopBar from "./Components/TopBar";
+import Router from "./Router";
 
 const MainContainer = styled.div`
   width: 100vw;
@@ -20,10 +20,7 @@ const App = () => (
   <>
     <TopBar />
     <MainContainer>
-      <Nav />
-      <NewsForm>
-        <Router />
-      </NewsForm>
+      <Router />
     </MainContainer>
   </>
 );
