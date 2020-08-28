@@ -1,1 +1,5 @@
-export default () => "heyyy";
+import React from "react";
+
+export default () => {
+  return <h1>Main News</h1>;
+};

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
@@ -39,66 +39,92 @@ const TabLink = styled(Link)`
   width: 100%;
   display: flex;
   text-decoration: none;
-  :hover {
+  :hover,
+  &.selected {
     cursor: pointer;
     ${Tab}, ${TabImg} > svg {
       color: #1a67d2;
     }
   }
+  &.selected {
+    background-color: #e2edfd;
+  }
+  /* transition: all 0.5s linear; */
 `;
 
 const TabList = [
-  { link: "/", imgTag: <i class="fas fa-globe"></i>, title: "주요 뉴스" },
+  { link: "/", imgTag: <i className="fas fa-globe"></i>, title: "주요 뉴스" },
   {
     link: "/recommend",
-    imgTag: <i class="far fa-user"></i>,
+    imgTag: <i className="far fa-user"></i>,
     title: "추천 뉴스",
   },
   {
     link: "/categories",
-    imgTag: <i class="fas fa-balance-scale"></i>,
+    imgTag: <i className="fas fa-balance-scale"></i>,
     title: "정치",
   },
   {
     link: "/categories",
-    imgTag: <i class="fas fa-won-sign"></i>,
+    imgTag: <i className="fas fa-won-sign"></i>,
     title: "경제",
   },
-  { link: "/categories", imgTag: <i class="fas fa-users"></i>, title: "사회" },
   {
     link: "/categories",
-    imgTag: <i class="fas fa-theater-masks"></i>,
+    imgTag: <i className="fas fa-users"></i>,
+    title: "사회",
+  },
+  {
+    link: "/categories",
+    imgTag: <i className="fas fa-theater-masks"></i>,
     title: "문화",
   },
   {
     link: "/categories",
-    imgTag: <i class="fas fa-flag-usa"></i>,
+    imgTag: <i className="fas fa-flag-usa"></i>,
     title: "국제",
   },
   {
     link: "/categories",
-    imgTag: <i class="far fa-building"></i>,
+    imgTag: <i className="far fa-building"></i>,
     title: "지역",
   },
   {
     link: "/categories",
-    imgTag: <i class="fas fa-running"></i>,
+    imgTag: <i className="fas fa-running"></i>,
     title: "스포츠",
   },
   {
     link: "/categories",
-    imgTag: <i class="fas fa-atom"></i>,
+    imgTag: <i className="fas fa-atom"></i>,
     title: "IT 과학",
   },
 ];
 
-export default () => (
-  <Nav>
-    {TabList.map((tab) => (
-      <TabLink to={tab.link}>
-        <TabImg>{tab.imgTag}</TabImg>
-        <Tab>{tab.title}</Tab>
-      </TabLink>
-    ))}
-  </Nav>
-);
+export default (props) => {
+  const [current, setCurrent] = useState();
+
+  useEffect(
+    () => document.getElementsByTagName("a")[0].classList.add("selected"),
+    []
+  );
+
+  return (
+    <Nav>
+      {TabList.map((tab) => (
+        <TabLink
+          to={tab.link}
+          key={tab.title}
+          onClick={(e) => {
+            props.setCategory(e.target.parentNode.innerText);
+            setCurrent(e.target.parentNode.innerText);
+          }}
+          className={tab.title === current ? "selected" : null}
+        >
+          <TabImg>{tab.imgTag}</TabImg>
+          <Tab>{tab.title}</Tab>
+        </TabLink>
+      ))}
+    </Nav>
+  );
+};

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -12,9 +12,13 @@ import Categories from "./Components/Screen/Categories";
 import Nav from "./Components/Nav";
 
 export default () => {
+  const [category, setCategory] = useState("추천 뉴스");
+
+  useEffect(() => console.log(category), [category]);
+
   return (
     <Router>
-      <Nav />
+      <Nav setCategory={setCategory} />
       <Switch>
         <Route exact path="/" component={MainNews} />
         <Route path="/recommend" component={RecommendNews} />

@@ -1,1 +1,5 @@
-export default () => "Categories";
+import React from "react";
+
+export default () => {
+  return <h1>Categories</h1>;
+};
