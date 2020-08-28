@@ -10,13 +10,22 @@ const TopBar = styled.header`
 `;
 
 const LogoForm = styled.div`
+  @import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&display=swap");
   height: 100%;
   width: 20%;
-  background-color: lawngreen;
+  /* background-color: lawngreen; */
+  font-size: 50px;
+
+  ${(props) => props.theme.putCenter};
+  span {
+    font-family: "Dancing Script", cursive;
+  }
 `;
 
 export default () => (
   <TopBar>
-    <LogoForm />
+    <LogoForm>
+      <span>Pantomath</span>
+    </LogoForm>
   </TopBar>
 );

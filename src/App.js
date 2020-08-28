@@ -2,7 +2,6 @@ import React from "react";
 import Router from "./Components/Router";
 import Nav from "./Components/Nav";
 import styled from "styled-components";
-import GlobalStyles from "./Components/GlobalStyles";
 import TopBar from "./Components/TopBar";
 
 const MainContainer = styled.div`
@@ -21,7 +20,6 @@ const App = () => (
   <>
     <TopBar />
     <MainContainer>
-      <GlobalStyles />
       <Nav />
       <NewsForm>
         <Router />
