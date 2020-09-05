@@ -32,19 +32,24 @@ export default (props) => {
       break;
   }
 
-  const { loading, error, data } = useAxios({
+  const [category, setCategory] = useState(currentCategory);
+
+  const { loading, error, data, refetch } = useAxios({
     url: "http://127.0.0.1:8000/keyword/",
     params: {
       category: currentCategory,
       importance: "high",
     },
   });
-  //   console.log(
-  //     `Loading : ${loading}\n Error : ${error}\n Data : ${JSON.stringify(data)}\n`
-  //   );
+
+  if (category !== currentCategory) {
+    setCategory(currentCategory);
+    refetch();
+  }
+
   return (
     <TopicPresenter>
-      {console.log(currentCategory)}
+      {console.log(loading, currentCategory, category, error)}
       {console.log(JSON.stringify(data))}
     </TopicPresenter>
   );

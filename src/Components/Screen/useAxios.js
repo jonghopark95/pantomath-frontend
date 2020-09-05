@@ -9,6 +9,12 @@ const useAxios = (options, axiosInstance = defaultAxios) => {
     data: null,
   });
 
+  const [trigger, setTrigger] = useState(0);
+  const refetch = () => {
+    setState({ ...state, loading: true });
+    setTrigger(Date.now());
+  };
+
   useEffect(() => {
     axiosInstance(options)
       .then((data) => {
@@ -17,9 +23,9 @@ const useAxios = (options, axiosInstance = defaultAxios) => {
       .catch((error) => {
         setState({ ...state, loading: false, error });
       });
-  }, []);
+  }, [trigger]);
 
-  return { ...state };
+  return { ...state, refetch };
 };
 
 export default useAxios;
