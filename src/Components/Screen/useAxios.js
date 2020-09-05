@@ -9,10 +9,6 @@ const useAxios = (options, axiosInstance = defaultAxios) => {
     data: null,
   });
 
-  // if (!options.url) {
-  //   return;
-  // }
-
   useEffect(() => {
     axiosInstance(options)
       .then((data) => {

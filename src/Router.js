@@ -8,13 +8,11 @@ import {
 
 import MainNews from "./Components/Screen/MainNews";
 import RecommendNews from "./Components/Screen/RecommendNews";
-import Categories from "./Components/Screen/Categories";
+import Topics from "./Components/Screen/Topics";
 import Nav from "./Components/Nav";
 
 export default () => {
   const [category, setCategory] = useState("추천 뉴스");
-
-  useEffect(() => console.log(category), [category]);
 
   return (
     <Router>
@@ -22,7 +20,7 @@ export default () => {
       <Switch>
         <Route exact path="/" component={MainNews} />
         <Route path="/recommend" component={RecommendNews} />
-        <Route path="/categories" component={Categories} />
+        <Route path="/topics" component={Topics} />
 
         {/* <Route exact path="/categories/politics" component={} />
         <Route exact path="/categories/economics" component={} />
