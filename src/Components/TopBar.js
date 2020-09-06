@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const TopBar = styled.header`
-  height: 10vh;
+  height: 70px;
   width: 100%;
   position: sticky;
   top: 0;
@@ -12,7 +12,7 @@ const TopBar = styled.header`
 const LogoForm = styled.div`
   @import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&display=swap");
   height: 100%;
-  width: 20%;
+  width: 365px;
   /* background-color: lawngreen; */
   font-size: 50px;
 

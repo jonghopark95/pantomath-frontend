@@ -1,20 +1,34 @@
 import React from "react";
-// import { Swiper, SwiperSlide } from "swiper/react";
-// import SwiperCore, { EffectFade } from "swiper";
+import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from "swiper";
 
-// import "swiper/swiper.scss";
-// import "swiper/components/effect-fade/effect-fade.scss";
+import { Swiper, SwiperSlide } from "swiper/react";
 
-// SwiperCore.use([EffectFade]);
+// Import Swiper styles
+import "swiper/swiper.scss";
+import "swiper/components/navigation/navigation.scss";
+import "swiper/components/pagination/pagination.scss";
+import "swiper/components/scrollbar/scrollbar.scss";
 
-// export default () => {
-//   return (
-//     <Swiper effect="fade">
-//       {[1, 2, 3].map((i, el) => {
-//         return <SwiperSlide>Slide {el}</SwiperSlide>;
-//       })}
-//     </Swiper>
-//   );
-// };
+// install Swiper components
+SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
 
-export default () => <h1>ddddd</h1>;
+export default () => {
+  return (
+    // <Swiper
+    //   spaceBetween={50}
+    //   slidesPerView={3}
+    //   navigation
+    //   pagination={{ clickable: true }}
+    //   scrollbar={{ draggable: true }}
+    //   onSwiper={(swiper) => console.log(swiper)}
+    //   onSlideChange={() => console.log("slide change")}
+    // >
+    //   <SwiperSlide>Slide 1</SwiperSlide>
+    //   <SwiperSlide>Slide 2</SwiperSlide>
+    //   <SwiperSlide>Slide 3</SwiperSlide>
+    //   <SwiperSlide>Slide 4</SwiperSlide>
+    // </Swiper>
+
+    <h1>ddd</h1>
+  );
+};

@@ -121,7 +121,7 @@ export default (props) => {
           }}
           className={tab.title === current ? "selected" : null}
         >
-          <TabImg>{tab.imgTag}</TabImg>
+          {/* <TabImg>{tab.imgTag}</TabImg> */}
           <Tab>{tab.title}</Tab>
         </TabLink>
       ))}
