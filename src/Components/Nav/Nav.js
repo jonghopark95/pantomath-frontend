@@ -3,53 +3,38 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const Nav = styled.nav`
-  width: 20%;
-  height: 90vh;
+  width: 1080px;
+  height: 70px;
   display: flex;
-  flex-direction: column;
-  justify-content: space-around;
+  justify-content: flex-end;
+  background-color: blue;
 `;
 
 const Tab = styled.span`
   height: 100%;
-  width: 60%;
-  /* background-color: purple; */
-  /* title: ${(props) => props.content}; */
+  width: 100%;
   color: ${(props) => props.theme.normalFontColor};
   display: flex;
   justify-content: left;
   align-items: center;
-  padding-left: 20px;
   font-size: 27px;
 `;
 
-const TabImg = styled.div`
-  height: 100%;
-  width: 40%;
-  ${(props) => props.theme.putCenter}
-  svg {
-    width: 2rem !important;
-    height: 100%;
-    color: ${(props) => props.theme.normalFontColor};
-  }
-`;
-
 const TabLink = styled(Link)`
-  height: 7%;
+  /* height: 7%; */
   width: 100%;
   display: flex;
   text-decoration: none;
   :hover,
   &.selected {
     cursor: pointer;
-    ${Tab}, ${TabImg} > svg {
+    ${Tab} > svg {
       color: #1a67d2;
     }
   }
   &.selected {
     background-color: #e2edfd;
   }
-  /* transition: all 0.5s linear; */
 `;
 
 const TabList = [

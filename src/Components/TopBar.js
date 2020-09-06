@@ -1,19 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+import Nav from "./Nav";
 
 const TopBar = styled.header`
   height: 70px;
   width: 100%;
-  position: sticky;
-  top: 0;
+  display: flex;
   background-color: lavender;
 `;
 
 const LogoForm = styled.div`
-  @import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&display=swap");
   height: 100%;
   width: 365px;
-  /* background-color: lawngreen; */
   font-size: 50px;
 
   ${(props) => props.theme.putCenter};
@@ -22,10 +20,14 @@ const LogoForm = styled.div`
   }
 `;
 
-export default () => (
-  <TopBar>
-    <LogoForm>
-      <span>Pantomath</span>
-    </LogoForm>
-  </TopBar>
-);
+export default () => {
+  const [category, setCategory] = useState("추천 뉴스");
+  return (
+    <TopBar>
+      <LogoForm>
+        <span>Pantomath</span>
+      </LogoForm>
+      <Nav setCategory={setCategory} />
+    </TopBar>
+  );
+};
