@@ -100,5 +100,5 @@ export default (props) => {
     }
   }
 
-  return <TopicPresenter></TopicPresenter>;
+  return <TopicPresenter newsData={newsDataToShow}></TopicPresenter>;
 };
