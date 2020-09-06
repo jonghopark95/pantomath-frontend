@@ -1,3 +1,8 @@
 import React from "react";
 
-export default () => <h1>ddddd</h1>;
+export default (props) => {
+  if (props.newsData.length !== 0) {
+    console.log(props.newsData);
+  }
+  return <h1>ddddd</h1>;
+};
