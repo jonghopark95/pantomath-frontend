@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from "swiper";
+import parse from "html-react-parser";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -50,12 +51,81 @@ const NewsBox = styled.div`
   background-color: ghostwhite;
 `;
 
+const NewsLink = styled.a`
+  text-decoration: none;
+`;
+
 const News = styled.div`
-  height: 100%;
   height: 90%;
   margin: 23px 45px 0px 45px;
   box-sizing: border-box;
   background-color: purple;
+`;
+
+const NewsTopBar = styled.div`
+  height: 30%;
+  width: 100%;
+  background-color: khaki;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+`;
+
+const NewsTitle = styled.div`
+  height: 100px;
+  width: 800px;
+  background-color: red;
+  ${(props) => props.theme.putCenter}
+  padding: 20px;
+  box-sizing: border-box;
+  span {
+    font-size: 40px;
+    color: black;
+  }
+`;
+
+const NewsKeyword = styled.div`
+  height: 100px;
+  width: 200px;
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: yellow;
+  ${(props) => props.theme.putCenter}
+  span {
+    font-size: 20px;
+    color: black;
+  }
+`;
+
+const NewsBottomBar = styled.div`
+  height: 70%;
+  width: 100%;
+  background-color: indianred;
+  display: flex;
+`;
+
+const NewsPicContainer = styled.div`
+  width: 30%;
+  background-color: pink;
+`;
+
+const NewsContentContainer = styled.div`
+  width: 70%;
+  background-color: green;
+  ${(props) => props.theme.putCenter}
+`;
+
+const NewsDescription = styled.div`
+  width: 500px;
+  height: 300px;
+  background-color: chartreuse;
+  padding: 20px;
+  box-sizing: border-box;
+  span {
+    font-size: 30px;
+    line-height: 1.3;
+    color: black;
+  }
 `;
 
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
@@ -113,12 +183,29 @@ export default (props) => {
             >
               {newsData.map((news, index) => (
                 <SwiperSlide key={index}>
-                  <News>
-                    {news.title}
-                    {news.keyword}
-                    {news.description}
-                    {news.original_link}
-                  </News>
+                  <NewsLink href={news.original_link} target="_blank">
+                    <News>
+                      <NewsTopBar>
+                        <NewsTitle>
+                          {parse(`
+                          <span>${news.title}</span>
+                          `)}
+                        </NewsTitle>
+                        <NewsKeyword>
+                          <span>키워드 : {news.keyword}</span>
+                        </NewsKeyword>
+                      </NewsTopBar>
+                      <NewsBottomBar>
+                        <NewsContentContainer>
+                          <NewsDescription>
+                            {parse(`
+                          <span>${news.description}</span>
+                          `)}
+                          </NewsDescription>
+                        </NewsContentContainer>
+                      </NewsBottomBar>
+                    </News>
+                  </NewsLink>
                 </SwiperSlide>
               ))}
             </Swiper>
