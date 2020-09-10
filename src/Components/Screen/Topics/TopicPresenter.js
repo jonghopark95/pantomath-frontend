@@ -15,6 +15,7 @@ const MainContainer = styled.div`
   height: 100%;
   width: 100%;
   display: flex;
+  ${(props) => props.theme.putCenter}
 `;
 
 const KeywordContainer = styled.div`
@@ -37,12 +38,50 @@ const KeywordBox = styled.div`
   padding: 30px;
   box-sizing: content-box;
   background-color: lavender;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
 `;
 
-const KeywordSet = styled.div`
-  height: auto;
+const Keyword = styled.div`
+  height: 530px;
   width: 100%;
-  background-color: gray;
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+`;
+
+const KeywordSet = styled.div``;
+
+const KeywordTitle = styled.span`
+  font-size: 40px;
+`;
+
+const KeywordKey = styled.div`
+  width: 100%;
+  height: 30px;
+  background-color: purple;
+  ${(props) => props.theme.putCenter};
+`;
+
+const KeywordValue = styled.div`
+  width: 100%;
+  height: auto;
+  padding: 15px 5px;
+  box-sizing: border-box;
+  background-color: khaki;
+  display: grid;
+  row-gap: 10px;
+  grid-template-columns: 50% 50%;
+  a {
+    place-self: center;
+  }
+`;
+
+const KeywordLink = styled.a`
+  text-decoration: none;
 `;
 
 const NewsBox = styled.div`
@@ -157,16 +196,27 @@ export default (props) => {
       <MainContainer>
         <KeywordContainer>
           <KeywordBox>
-            {keywordDict.high.length !== 0 &&
-              Object.keys(keywordDict).map((key) => (
-                <KeywordSet>
-                  {key}
+            <KeywordTitle>
+              {keywordDict.high.length !== 0 && keywordDict["high"][0].category}
+            </KeywordTitle>
+            <Keyword>
+              {keywordDict.high.length !== 0 &&
+                Object.keys(keywordDict).map((key) => (
+                  <KeywordSet>
+                    <KeywordKey>{key}</KeywordKey>
 
-                  {Object.values(keywordDict[key]).map((value) => (
-                    <p>{value.keyword}</p>
-                  ))}
-                </KeywordSet>
-              ))}
+                    <KeywordValue>
+                      {Object.values(keywordDict[key]).map((value) => (
+                        <KeywordLink
+                          href={`?category=${keywordDict[key][0].category}&keyword=${value.keyword}`}
+                        >
+                          <span>{value.keyword}</span>
+                        </KeywordLink>
+                      ))}
+                    </KeywordValue>
+                  </KeywordSet>
+                ))}
+            </Keyword>
           </KeywordBox>
         </KeywordContainer>
         <NewsContainer>
