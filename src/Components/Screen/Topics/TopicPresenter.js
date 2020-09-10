@@ -77,6 +77,9 @@ const KeywordValue = styled.div`
   grid-template-columns: 50% 50%;
   a {
     place-self: center;
+    span {
+      font-size: 15px;
+    }
   }
 `;
 

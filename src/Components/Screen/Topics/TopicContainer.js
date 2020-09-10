@@ -47,17 +47,29 @@ export default (props) => {
     },
   });
 
+  let decodedURI = decodeURI(decodeURIComponent(window.location.search));
+  let axiosOption = {
+    url: "http://127.0.0.1:8000/news/",
+  };
+  if (decodedURI !== "") {
+    let paramArray = decodedURI.slice(1).split("&");
+    let categoryValue = paramArray[0].replace("category=", "");
+    let keywordValue = paramArray[1].replace("keyword=", "");
+    let params = {
+      category: categoryValue,
+      keyword: keywordValue,
+    };
+    axiosOption["params"] = params;
+  } else {
+    axiosOption["params"] = currentCategory;
+  }
+
   const {
     loading: newsDataLoading,
     error,
     data: newsData,
     refetch: newsRefetch,
-  } = useAxios({
-    url: "http://127.0.0.1:8000/news/",
-    params: {
-      category: currentCategory,
-    },
-  });
+  } = useAxios(axiosOption);
 
   const [category, setCategory] = useState(currentCategory);
   // 카테고리가 달라질 경우 api 를 새로 호출한다.
@@ -73,6 +85,7 @@ export default (props) => {
   let keywordDataToShow = [];
   let veryHighKeywordData = [];
   let newsDataToShow = [];
+
   if (!keywordDataLoading) {
     keywordDataToShow = keywordData.data;
     veryHighKeywordData = keywordData.data.filter(
@@ -103,6 +116,7 @@ export default (props) => {
   }
 
   return (
+    // <h2>Text</h2>
     <TopicPresenter
       keywordData={keywordDataToShow}
       newsData={newsDataToShow}
