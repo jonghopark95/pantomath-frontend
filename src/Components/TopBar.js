@@ -21,13 +21,12 @@ const LogoForm = styled.div`
 `;
 
 export default () => {
-  const [category, setCategory] = useState("추천 뉴스");
   return (
     <TopBar>
       <LogoForm>
         <span>Pantomath</span>
       </LogoForm>
-      <Nav setCategory={setCategory} />
+      <Nav />
     </TopBar>
   );
 };

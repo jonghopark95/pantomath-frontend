@@ -89,11 +89,6 @@ const TabList = [
 export default (props) => {
   const [current, setCurrent] = useState();
 
-  useEffect(
-    () => document.getElementsByTagName("a")[0].classList.add("selected"),
-    []
-  );
-
   return (
     <Nav>
       {TabList.map((tab) => (
@@ -101,7 +96,6 @@ export default (props) => {
           to={tab.link}
           key={tab.title}
           onClick={(e) => {
-            props.setCategory(e.target.parentNode.innerText);
             setCurrent(e.target.parentNode.innerText);
           }}
           className={tab.title === current ? "selected" : null}

@@ -70,9 +70,11 @@ export default (props) => {
   // 첫 화면에선 very high 순으로 뉴스를 10개 출력해준다.
   // 만약 Very high keyword가 10개 이하일 경우 해당 키워드를 순회하며 10개 기사를 호출
   // 10개 이상이면 키워드당 한 기사를 호출한다.
+  let keywordDataToShow = [];
   let veryHighKeywordData = [];
   let newsDataToShow = [];
   if (!keywordDataLoading) {
+    keywordDataToShow = keywordData.data;
     veryHighKeywordData = keywordData.data.filter(
       (keyword) => keyword.importance === "very high"
     );
@@ -100,5 +102,10 @@ export default (props) => {
     }
   }
 
-  return <TopicPresenter newsData={newsDataToShow}></TopicPresenter>;
+  return (
+    <TopicPresenter
+      keywordData={keywordDataToShow}
+      newsData={newsDataToShow}
+    ></TopicPresenter>
+  );
 };
