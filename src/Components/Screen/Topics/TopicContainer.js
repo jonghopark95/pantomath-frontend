@@ -37,7 +37,6 @@ export default (props) => {
   // 키워드와 뉴스 데이터를 우선 호출한다.
   const {
     loading: keywordDataLoading,
-    error: keywordError,
     data: keywordData,
     refetch: keywordRefetch,
   } = useAxios({
@@ -66,7 +65,6 @@ export default (props) => {
 
   const {
     loading: newsDataLoading,
-    error,
     data: newsData,
     refetch: newsRefetch,
   } = useAxios(axiosOption);
@@ -86,7 +84,8 @@ export default (props) => {
   let veryHighKeywordData = [];
   let newsDataToShow = [];
 
-  if (!keywordDataLoading) {
+  // http://localhost:3000/topics/politics
+  if (!keywordDataLoading && decodedURI === "") {
     keywordDataToShow = keywordData.data;
     veryHighKeywordData = keywordData.data.filter(
       (keyword) => keyword.importance === "very high"
@@ -112,6 +111,16 @@ export default (props) => {
           );
         });
       }
+    }
+  }
+  // http://localhost:3000/topics/it-science?category=정치&keyword=북한
+  else if (!keywordDataLoading && decodedURI !== "") {
+    keywordDataToShow = keywordData.data;
+
+    if (newsData !== null) {
+      newsData.data.forEach((data) => {
+        newsDataToShow.push(data);
+      });
     }
   }
 

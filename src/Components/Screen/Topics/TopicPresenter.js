@@ -146,11 +146,6 @@ const NewsBottomBar = styled.div`
   display: flex;
 `;
 
-const NewsPicContainer = styled.div`
-  width: 30%;
-  background-color: pink;
-`;
-
 const NewsContentContainer = styled.div`
   width: 70%;
   background-color: green;
@@ -204,13 +199,14 @@ export default (props) => {
             </KeywordTitle>
             <Keyword>
               {keywordDict.high.length !== 0 &&
-                Object.keys(keywordDict).map((key) => (
-                  <KeywordSet>
+                Object.keys(keywordDict).map((key, index) => (
+                  <KeywordSet key={index}>
                     <KeywordKey>{key}</KeywordKey>
 
                     <KeywordValue>
-                      {Object.values(keywordDict[key]).map((value) => (
+                      {Object.values(keywordDict[key]).map((value, index) => (
                         <KeywordLink
+                          key={index}
                           href={`?category=${keywordDict[key][0].category}&keyword=${value.keyword}`}
                         >
                           <span>{value.keyword}</span>

@@ -23,6 +23,7 @@ const useAxios = (options, axiosInstance = defaultAxios) => {
       .catch((error) => {
         setState({ ...state, loading: false, error });
       });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [trigger]);
 
   return { ...state, refetch };

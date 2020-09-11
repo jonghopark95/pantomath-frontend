@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -10,7 +10,6 @@ import MainNews from "./Components/Screen/MainNews";
 import RecommendNews from "./Components/Screen/RecommendNews";
 import Topics from "./Components/Screen/Topics";
 import TopBar from "./Components/TopBar";
-import Nav from "./Components/Nav";
 
 export default () => {
   return (
