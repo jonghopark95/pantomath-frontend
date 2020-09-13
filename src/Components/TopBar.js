@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
 import Nav from "./Nav";
+import LoginForm from "./LoginForm";
 
 const TopBar = styled.header`
   height: 70px;
   width: 100%;
   display: flex;
   background-color: lavender;
+  justify-content: space-around;
 `;
 
 const LogoForm = styled.div`
@@ -20,6 +22,21 @@ const LogoForm = styled.div`
   }
 `;
 
+const LoginButton = styled.div`
+  height: 100%;
+  width: 150px;
+  font-size: 20px;
+  ${(props) => props.theme.putCenter};
+`;
+
+const activateLoginForm = () => {
+  // 버튼 누를 시
+  // 해당 폼이 활성화되어있는지 아닌지 체크하고
+  // 활성화 되어 있다면 창을 닫음, 안되 있으면 활성화 시킴
+  let currentDOM = document.getElementById("login_form");
+  currentDOM.classList.toggle("activate");
+};
+
 export default () => {
   return (
     <TopBar>
@@ -27,6 +44,12 @@ export default () => {
         <span>Pantomath</span>
       </LogoForm>
       <Nav />
+      <LoginButton onClick={activateLoginForm}>
+        <button>
+          <span>로그인</span>
+        </button>
+      </LoginButton>
+      <LoginForm />
     </TopBar>
   );
 };

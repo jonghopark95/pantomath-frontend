@@ -7,7 +7,7 @@ const MainContainer = styled.div`
   height: 100vh;
 `;
 
-const App = () => (
+const App = (props) => (
   <>
     <MainContainer>
       <Router />

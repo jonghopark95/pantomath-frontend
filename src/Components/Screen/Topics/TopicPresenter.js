@@ -149,12 +149,13 @@ const NewsBottomBar = styled.div`
 const NewsContentContainer = styled.div`
   width: 70%;
   background-color: green;
+  position: relative;
   ${(props) => props.theme.putCenter}
 `;
 
 const NewsDescription = styled.div`
-  width: 500px;
-  height: 300px;
+  width: 600px;
+  height: 250px;
   background-color: chartreuse;
   padding: 20px;
   box-sizing: border-box;
@@ -163,6 +164,49 @@ const NewsDescription = styled.div`
     line-height: 1.3;
     color: black;
   }
+`;
+
+const NewsInfoContainer = styled.div`
+  width: 30%;
+  background-color: pink;
+  position: relative;
+  ${(props) => props.theme.putCenter}
+`;
+
+const EditorContainer = styled.div`
+  width: 100%;
+  height: 75%;
+  margin-top: 6%;
+  background-color: blue;
+  position: absolute;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+`;
+
+const EditorAvatar = styled.div`
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background-color: white;
+`;
+
+const EditorName = styled.div`
+  width: 200px;
+  height: 40px;
+  background-color: white;
+`;
+
+const NewsLinker = styled.div`
+  width: 50px;
+  height: 50px;
+  margin: 20px;
+  background-color: black;
+  position: absolute;
+  top: 0;
+  right: 0;
 `;
 
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
@@ -232,29 +276,42 @@ export default (props) => {
             >
               {newsData.map((news, index) => (
                 <SwiperSlide key={index}>
-                  <NewsLink href={news.original_link} target="_blank">
-                    <News>
-                      <NewsTopBar>
-                        <NewsTitle>
-                          {parse(`
+                  <News>
+                    <NewsTopBar>
+                      <NewsTitle>
+                        {parse(`
                           <span>${news.title}</span>
                           `)}
-                        </NewsTitle>
-                        <NewsKeyword>
-                          <span>키워드 : {news.keyword}</span>
-                        </NewsKeyword>
-                      </NewsTopBar>
-                      <NewsBottomBar>
-                        <NewsContentContainer>
-                          <NewsDescription>
-                            {parse(`
+                      </NewsTitle>
+                      <NewsKeyword>
+                        <span>키워드 : {news.keyword}</span>
+                      </NewsKeyword>
+                    </NewsTopBar>
+                    <NewsBottomBar>
+                      <NewsContentContainer>
+                        <NewsDescription>
+                          {parse(`
                           <span>${news.description}</span>
                           `)}
-                          </NewsDescription>
-                        </NewsContentContainer>
-                      </NewsBottomBar>
-                    </News>
-                  </NewsLink>
+                        </NewsDescription>
+                        <a
+                          href={news.original_link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <NewsLinker />
+                        </a>
+                      </NewsContentContainer>
+                      <NewsInfoContainer>
+                        <EditorContainer>
+                          <EditorAvatar />
+                          <EditorName />
+                        </EditorContainer>
+                        <button>좋아요</button>
+                        <button>공유?</button>
+                      </NewsInfoContainer>
+                    </NewsBottomBar>
+                  </News>
                 </SwiperSlide>
               ))}
             </Swiper>

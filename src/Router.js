@@ -11,7 +11,7 @@ import RecommendNews from "./Components/Screen/RecommendNews";
 import Topics from "./Components/Screen/Topics";
 import TopBar from "./Components/TopBar";
 
-export default () => {
+export default (props) => {
   return (
     <Router>
       <TopBar />
