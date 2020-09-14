@@ -125,7 +125,6 @@ export default (props) => {
   }
 
   return (
-    // <h2>Text</h2>
     <TopicPresenter
       keywordData={keywordDataToShow}
       newsData={newsDataToShow}

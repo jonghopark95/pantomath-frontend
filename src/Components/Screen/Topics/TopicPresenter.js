@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from "swiper";
 import parse from "html-react-parser";
+import axios from "axios";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -242,6 +243,38 @@ export default (props) => {
   keywordDict["middle"] = middleKeywordData;
   keywordDict["low"] = lowKeywordData;
 
+  const getCookie = (cookieName) => {
+    const name = cookieName + "=";
+    const decodedCookie = decodeURIComponent(document.cookie);
+
+    const cookieArray = decodedCookie.split(";");
+
+    for (let i = 0; i < cookieArray.length; i++) {
+      let c = cookieArray[i];
+      while (c.charAt(0) === "") {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) === 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+  };
+
+  const requestLike = async (e, id) => {
+    e.preventDefault();
+    try {
+      const _test = axios.post("/like/", {
+        user: getCookie("access"),
+        newsId: id,
+      });
+      const test = await _test;
+      console.log(test);
+    } catch {
+      console.log("error");
+    }
+  };
+
   return (
     <>
       <MainContainer>
@@ -317,7 +350,9 @@ export default (props) => {
                           <EditorName />
                         </EditorContainer>
                         <CommunicateContainer>
-                          <button>좋아요</button>
+                          <button onClick={(e) => requestLike(e, news.id)}>
+                            <i class="far fa-heart"></i>
+                          </button>
                           <button>기사로 이동</button>
                         </CommunicateContainer>
                       </NewsInfoContainer>
