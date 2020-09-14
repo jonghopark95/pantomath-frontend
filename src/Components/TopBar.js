@@ -38,10 +38,6 @@ const activateLoginForm = () => {
 };
 
 export default () => {
-  const [cookie, setCookie] = useState(document.cookie);
-
-  useEffect(() => console.log(cookie), [cookie]);
-
   return (
     <TopBar>
       <LogoForm>

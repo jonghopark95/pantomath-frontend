@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from "swiper";
 import parse from "html-react-parser";
@@ -264,16 +264,24 @@ export default (props) => {
   const requestLike = async (e, id) => {
     e.preventDefault();
     try {
-      const _test = axios.post("/like/", {
+      const sendLikeApi = axios.post("/like/", {
         user: getCookie("access"),
         newsId: id,
       });
-      const test = await _test;
-      console.log(test);
+      const userLikedNewsList = await sendLikeApi;
+      let storeData = userLikedNewsList["data"]["data"].toString();
+      document.cookie = `likednewslist=${storeData}`;
+      setNewsListCookie(storeData);
     } catch {
       console.log("error");
     }
   };
+
+  const [newsListCookie, setNewsListCookie] = useState(
+    getCookie(" likednewslist")
+  );
+
+  // useEffct(() => setNewsListCookie)
 
   return (
     <>
@@ -350,8 +358,18 @@ export default (props) => {
                           <EditorName />
                         </EditorContainer>
                         <CommunicateContainer>
-                          <button onClick={(e) => requestLike(e, news.id)}>
-                            <i class="far fa-heart"></i>
+                          <button
+                            onClick={(e) => {
+                              requestLike(e, news.id);
+                            }}
+                          >
+                            {console.log(newsListCookie)}
+
+                            {newsListCookie.includes(news.id) ? (
+                              <i class="fas fa-heart"></i>
+                            ) : (
+                              <i class="far fa-heart"></i>
+                            )}
                           </button>
                           <button>기사로 이동</button>
                         </CommunicateContainer>
