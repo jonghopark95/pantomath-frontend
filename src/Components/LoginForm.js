@@ -50,9 +50,17 @@ export default () => {
         password: password,
       });
       const token = await _token;
-      console.log(token);
+      if (token.status === 200) {
+        document.getElementById("login_form").classList.toggle("activate");
+        window.location.reload();
+      }
+      console.log(token.data["token"]);
+      document.cookie = "access=" + token.data["token"];
       history.push("/");
-    } catch {}
+    } catch {
+      console.log("error happened");
+      history.push("/");
+    }
   };
 
   const requestRegister = async (e) => {
@@ -63,17 +71,23 @@ export default () => {
         password: password,
       });
       const token = await _token;
-      console.log(token);
-      //   history.push("/");
-    } catch {}
+      console.log(token, token.status);
+
+      if (token.status === 200) alert("회원가입에 성공하였습니다.");
+      setRegister(false);
+      history.push("/");
+    } catch {
+      console.log("error happened");
+      document.getElementById("login_form").classList.toggle("activate");
+      alert("로그인 실패!");
+    }
   };
 
   //   useEffect(() => console.log(email, password), [email, password]);
 
   return (
-    <LoginForm id="login_form" className="activate">
-      {console.log(register)}
-      {register === false ? (
+    <LoginForm id="login_form">
+      {register === false && (
         <form class="form-signin" method="POST" onSubmit={requestLogin}>
           <div class="text-center mb-4">
             <i
@@ -119,16 +133,23 @@ export default () => {
             style={{
               marginBottom: "20px",
             }}
-            // onClick={setRegister(true)}
           >
             로그인
           </button>
 
-          <button type="submit" class="btn btn-lg btn-primary btn-block">
+          <button
+            type="submit"
+            class="btn btn-lg btn-primary btn-block"
+            onClick={() => {
+              setRegister(true);
+            }}
+          >
             회원가입
           </button>
         </form>
-      ) : (
+      )}
+
+      {register === true && (
         <form class="form-signin" method="POST" onSubmit={requestRegister}>
           <div class="text-center mb-4">
             <i

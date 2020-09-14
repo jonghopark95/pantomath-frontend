@@ -9,8 +9,11 @@ export default () => {
       importance: "low",
     },
   });
-  console.log(
-    `loading:${loading}\n error:${error}\n data:${JSON.stringify(data)}\n`
-  );
+  // console.log(
+  //   `loading:${loading}\n error:${error}\n data:${JSON.stringify(data)}\n`
+  // );
+  // {
+  //   console.log(document.cookie);
+  // }
   return <h1>Main News</h1>;
 };

@@ -209,6 +209,15 @@ const NewsLinker = styled.div`
   right: 0;
 `;
 
+const CommunicateContainer = styled.div`
+  width: 100%;
+  height: 19%;
+  position: absolute;
+  bottom: 0;
+  background-color: purple;
+  ${(props) => props.theme.putCenter};
+`;
+
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
 
 export default (props) => {
@@ -307,8 +316,10 @@ export default (props) => {
                           <EditorAvatar />
                           <EditorName />
                         </EditorContainer>
-                        <button>좋아요</button>
-                        <button>공유?</button>
+                        <CommunicateContainer>
+                          <button>좋아요</button>
+                          <button>기사로 이동</button>
+                        </CommunicateContainer>
                       </NewsInfoContainer>
                     </NewsBottomBar>
                   </News>

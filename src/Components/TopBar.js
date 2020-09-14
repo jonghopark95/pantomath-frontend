@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Nav from "./Nav";
 import LoginForm from "./LoginForm";
@@ -38,6 +38,10 @@ const activateLoginForm = () => {
 };
 
 export default () => {
+  const [cookie, setCookie] = useState(document.cookie);
+
+  useEffect(() => console.log(cookie), [cookie]);
+
   return (
     <TopBar>
       <LogoForm>
@@ -45,9 +49,31 @@ export default () => {
       </LogoForm>
       <Nav />
       <LoginButton onClick={activateLoginForm}>
-        <button>
-          <span>로그인</span>
-        </button>
+        {/* {document.cookie === "" ? (
+          <button>
+            <span>로그아웃</span>
+          </button>
+        ) : (
+          <button>
+            <span>로그인</span>
+          </button>
+        )} */}
+        {document.cookie === "" ? (
+          <button>
+            <span>로그인</span>
+          </button>
+        ) : (
+          <button
+            onClick={() => {
+              let date = new Date();
+              date.setDate(date.getDate() - 1);
+              document.cookie = `access=; expires=${date.toUTCString()}; path=/;`;
+              window.location.reload();
+            }}
+          >
+            <span>로그아웃</span>
+          </button>
+        )}
       </LoginButton>
       <LoginForm />
     </TopBar>
