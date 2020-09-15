@@ -37,6 +37,24 @@ const activateLoginForm = () => {
   currentDOM.classList.toggle("activate");
 };
 
+const getCookie = (cookieName) => {
+  const name = cookieName + "=";
+  const decodedCookie = decodeURIComponent(document.cookie);
+
+  const cookieArray = decodedCookie.split(";");
+
+  for (let i = 0; i < cookieArray.length; i++) {
+    let c = cookieArray[i];
+    while (c.charAt(0) === " ") {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) === 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+};
+
 export default () => {
   return (
     <TopBar>
@@ -54,7 +72,7 @@ export default () => {
             <span>로그인</span>
           </button>
         )} */}
-        {document.cookie === "" ? (
+        {getCookie("access") === "" ? (
           <button>
             <span>로그인</span>
           </button>
@@ -64,6 +82,9 @@ export default () => {
               let date = new Date();
               date.setDate(date.getDate() - 1);
               document.cookie = `access=; expires=${date.toUTCString()}; path=/;`;
+              document.cookie = `access=; expires=${date.toUTCString()}; path=/topics;`;
+              document.cookie = `likednewslist=; expires=${date.toUTCString()}; path=/;`;
+              document.cookie = `likednewslist=; expires=${date.toUTCString()}; path=/topics;`;
               window.location.reload();
             }}
           >

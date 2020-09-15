@@ -251,7 +251,7 @@ export default (props) => {
 
     for (let i = 0; i < cookieArray.length; i++) {
       let c = cookieArray[i];
-      while (c.charAt(0) === "") {
+      while (c.charAt(0) === " ") {
         c = c.substring(1);
       }
       if (c.indexOf(name) === 0) {
@@ -269,6 +269,7 @@ export default (props) => {
         newsId: id,
       });
       const userLikedNewsList = await sendLikeApi;
+
       let storeData = userLikedNewsList["data"]["data"].toString();
       document.cookie = `likednewslist=${storeData}`;
       setNewsListCookie(storeData);
@@ -277,11 +278,25 @@ export default (props) => {
     }
   };
 
+  const requestToRead = async (e, id) => {
+    // e.preventDefault();
+    console.log(id);
+    try {
+      axios.post("/read/", {
+        user: getCookie("access"),
+        newsId: id,
+      });
+    } catch {
+      console.log("error");
+    }
+  };
+
   const [newsListCookie, setNewsListCookie] = useState(
-    getCookie(" likednewslist")
+    getCookie("likednewslist")
   );
 
-  // useEffct(() => setNewsListCookie)
+  // const [currentNewsId, setCurrentNewsId] = useState(0);
+  // useEffect(() => console.log(currentNewsId), [currentNewsId]);
 
   return (
     <>
@@ -322,7 +337,22 @@ export default (props) => {
               pagination={{ clickable: true }}
               // scrollbar={{ draggable: true }}
               // onSwiper={(swiper) => console.log(swiper)}
-              // onSlideChange={() => console.log("slide change")}
+              touchStartForcePreventDefault={true}
+              onSlideChange={(e) => {
+                // if (currentNewsId )
+                // console.log(e, props);
+                // console.log(
+                //   document
+                //     .querySelector(".swiper-slide-active")
+                //     .querySelector(".fake_data").innerHTML
+                // );
+                requestToRead(
+                  e,
+                  document
+                    .querySelector(".swiper-slide-active")
+                    .querySelector(".fake_data").innerHTML
+                );
+              }}
             >
               {newsData.map((news, index) => (
                 <SwiperSlide key={index}>
@@ -372,6 +402,7 @@ export default (props) => {
                             )}
                           </button>
                           <button>기사로 이동</button>
+                          <p className="fake_data">{news.id}</p>
                         </CommunicateContainer>
                       </NewsInfoContainer>
                     </NewsBottomBar>

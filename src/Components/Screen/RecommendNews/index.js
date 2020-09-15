@@ -1,5 +1,6 @@
 import React from "react";
+import RecommendNewsContainer from "./RecommendNewsContainer";
 
 export default () => {
-  return <h1>Recommend News</h1>;
+  return <RecommendNewsContainer />;
 };
