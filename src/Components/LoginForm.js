@@ -6,8 +6,8 @@ import axios from "axios";
 
 const LoginForm = styled.div`
   width: 400px;
-  height: 600px;
-  background-color: whitesmoke;
+  height: 630px;
+  background-color: #dcdde1;
   z-index: 100;
   position: absolute;
   top: 80px;
@@ -90,15 +90,40 @@ export default () => {
       {register === false && (
         <form class="form-signin" method="POST" onSubmit={requestLogin}>
           <div class="text-center mb-4">
+            <button
+              onClick={() =>
+                document
+                  .getElementById("login_form")
+                  .classList.remove("activate")
+              }
+              style={{ all: "unset" }}
+            >
+              <i
+                class="fas fa-times"
+                style={{
+                  top: "7px",
+                  right: "15px",
+                  position: "absolute",
+                  fontSize: "34px",
+                  color: "#7f8fa6",
+                  cursor: "pointer",
+                }}
+              ></i>
+            </button>
             <i
               class="fab fa-product-hunt"
               style={{
                 fontSize: "60px",
-                color: "#996478",
+                color: "#7f8fa6",
                 marginBottom: "20px",
               }}
             ></i>
-            <h1 class="h3 mb-3 font-weight-normal">Pantomath</h1>
+            <h1
+              class="h3 mb-3 font-weight-normal"
+              style={{ fontFamily: "Cedarville Cursive", fontSize: "30px" }}
+            >
+              pantomath
+            </h1>
           </div>
           <div class="form-label-group">
             <input
@@ -110,7 +135,7 @@ export default () => {
               placeholder="Email address"
               required
               autofocus
-              style={{ marginTop: "50px", marginBottom: "30px" }}
+              style={{ marginTop: "60px", marginBottom: "30px" }}
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
@@ -131,7 +156,10 @@ export default () => {
             type="submit"
             class="btn btn-lg btn-primary btn-block"
             style={{
-              marginBottom: "20px",
+              marginBottom: "30px",
+              backgroundColor: "#7f8fa6",
+              borderColor: "#7f8fa6",
+              fontSize: "15px",
             }}
           >
             로그인
@@ -142,6 +170,11 @@ export default () => {
             class="btn btn-lg btn-primary btn-block"
             onClick={() => {
               setRegister(true);
+            }}
+            style={{
+              backgroundColor: "#7f8fa6",
+              borderColor: "#7f8fa6",
+              fontSize: "15px",
             }}
           >
             회원가입

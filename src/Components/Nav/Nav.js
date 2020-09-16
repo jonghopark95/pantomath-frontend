@@ -7,7 +7,6 @@ const Nav = styled.nav`
   height: 70px;
   display: flex;
   justify-content: flex-end;
-  background-color: blue;
 `;
 
 const Tab = styled.span`
