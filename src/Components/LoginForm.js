@@ -202,7 +202,7 @@ export default () => {
               value={email}
               id="inputEmail"
               class="form-control"
-              placeholder="Email address"
+              placeholder="email address"
               required
               autofocus
               style={{ marginTop: "50px", marginBottom: "30px" }}
@@ -217,7 +217,7 @@ export default () => {
               onChange={(e) => setPassword(e.target.value)}
               id="inputPassword"
               class="form-control"
-              placeholder="Password"
+              placeholder="password"
               required
               style={{ marginBottom: "70px" }}
             />

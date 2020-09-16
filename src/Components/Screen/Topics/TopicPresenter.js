@@ -1,6 +1,13 @@
+//https://flatuicolors.com/palette/gb
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from "swiper";
+import SwiperCore, {
+  Navigation,
+  Mousewheel,
+  Pagination,
+  Scrollbar,
+  A11y,
+} from "swiper";
 import parse from "html-react-parser";
 import axios from "axios";
 
@@ -15,6 +22,7 @@ import "swiper/components/scrollbar/scrollbar.scss";
 const MainContainer = styled.div`
   height: 100%;
   width: 100%;
+  /* margin: 0px 300px; */
   display: flex;
   ${(props) => props.theme.putCenter}
 `;
@@ -89,13 +97,9 @@ const KeywordLink = styled.a`
 `;
 
 const NewsBox = styled.div`
-  height: 600px;
-  width: 1200px;
+  width: 100%;
+  height: 80%;
   background-color: ghostwhite;
-`;
-
-const NewsLink = styled.a`
-  text-decoration: none;
 `;
 
 const News = styled.div`
@@ -109,16 +113,16 @@ const NewsTopBar = styled.div`
   height: 30%;
   width: 100%;
   background-color: khaki;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
 `;
 
 const NewsTitle = styled.div`
   height: 100px;
-  width: 800px;
+  width: 100%;
   background-color: red;
-  ${(props) => props.theme.putCenter}
+  /* ${(props) => props.theme.putCenter} */
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
   padding: 20px;
   box-sizing: border-box;
   span {
@@ -128,7 +132,7 @@ const NewsTitle = styled.div`
 `;
 
 const NewsKeyword = styled.div`
-  height: 100px;
+  height: 20px;
   width: 200px;
   padding: 20px;
   box-sizing: border-box;
@@ -219,7 +223,7 @@ const CommunicateContainer = styled.div`
   ${(props) => props.theme.putCenter};
 `;
 
-SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
+SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Mousewheel]);
 
 export default (props) => {
   let newsData = props.newsData;
@@ -280,7 +284,7 @@ export default (props) => {
 
   const requestToRead = async (e, id) => {
     // e.preventDefault();
-    console.log(id);
+    // console.log(id);
     try {
       axios.post("/read/", {
         user: getCookie("access"),
@@ -298,60 +302,33 @@ export default (props) => {
   // const [currentNewsId, setCurrentNewsId] = useState(0);
   // useEffect(() => console.log(currentNewsId), [currentNewsId]);
 
+  const swiperParams = {
+    mousewheel: true,
+    direction: "vertical",
+  };
+
   return (
     <>
       <MainContainer>
-        <KeywordContainer>
-          <KeywordBox>
-            <KeywordTitle>
-              {keywordDict.high.length !== 0 && keywordDict["high"][0].category}
-            </KeywordTitle>
-            <Keyword>
-              {keywordDict.high.length !== 0 &&
-                Object.keys(keywordDict).map((key, index) => (
-                  <KeywordSet key={index}>
-                    <KeywordKey>{key}</KeywordKey>
-
-                    <KeywordValue>
-                      {Object.values(keywordDict[key]).map((value, index) => (
-                        <KeywordLink
-                          key={index}
-                          href={`?category=${keywordDict[key][0].category}&keyword=${value.keyword}`}
-                        >
-                          <span>{value.keyword}</span>
-                        </KeywordLink>
-                      ))}
-                    </KeywordValue>
-                  </KeywordSet>
-                ))}
-            </Keyword>
-          </KeywordBox>
-        </KeywordContainer>
         <NewsContainer>
           <NewsBox>
             <Swiper
-              style={{ height: "100%" }}
-              spaceBetween={50}
+              {...swiperParams}
+              style={{ width: "100%", height: "100%" }}
               slidesPerView={1}
-              navigation
               pagination={{ clickable: true }}
               // scrollbar={{ draggable: true }}
               // onSwiper={(swiper) => console.log(swiper)}
+              // navigation
               touchStartForcePreventDefault={true}
               onSlideChange={(e) => {
-                // if (currentNewsId )
-                // console.log(e, props);
-                // console.log(
-                //   document
-                //     .querySelector(".swiper-slide-active")
-                //     .querySelector(".fake_data").innerHTML
-                // );
                 requestToRead(
                   e,
                   document
                     .querySelector(".swiper-slide-active")
                     .querySelector(".fake_data").innerHTML
                 );
+                // console.log(e.target);
               }}
             >
               {newsData.map((news, index) => (
@@ -412,6 +389,32 @@ export default (props) => {
             </Swiper>
           </NewsBox>
         </NewsContainer>
+        <KeywordContainer>
+          <KeywordBox>
+            <KeywordTitle>
+              {keywordDict.high.length !== 0 && keywordDict["high"][0].category}
+            </KeywordTitle>
+            <Keyword>
+              {keywordDict.high.length !== 0 &&
+                Object.keys(keywordDict).map((key, index) => (
+                  <KeywordSet key={index}>
+                    <KeywordKey>{key}</KeywordKey>
+
+                    <KeywordValue>
+                      {Object.values(keywordDict[key]).map((value, index) => (
+                        <KeywordLink
+                          key={index}
+                          href={`?category=${keywordDict[key][0].category}&keyword=${value.keyword}`}
+                        >
+                          <span>{value.keyword}</span>
+                        </KeywordLink>
+                      ))}
+                    </KeywordValue>
+                  </KeywordSet>
+                ))}
+            </Keyword>
+          </KeywordBox>
+        </KeywordContainer>
       </MainContainer>
     </>
   );

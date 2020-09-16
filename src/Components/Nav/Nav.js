@@ -16,13 +16,9 @@ const Tab = styled.span`
   display: flex;
   justify-content: left;
   align-items: center;
-  font-size: 27px;
 `;
 
 const TabLink = styled(Link)`
-  /* height: 7%; */
-  width: 100%;
-  display: flex;
   text-decoration: none;
   :hover,
   &.selected {
@@ -89,19 +85,21 @@ export default (props) => {
   const [current, setCurrent] = useState();
 
   return (
-    <Nav>
+    <ul class="navbar-nav mr-auto">
       {TabList.map((tab) => (
-        <TabLink
-          to={tab.link}
-          key={tab.title}
-          onClick={(e) => {
-            setCurrent(e.target.parentNode.innerText);
-          }}
-          className={tab.title === current ? "selected" : null}
-        >
-          <Tab>{tab.title}</Tab>
-        </TabLink>
+        <li class="nav-item">
+          <TabLink
+            to={tab.link}
+            key={tab.title}
+            onClick={(e) => {
+              setCurrent(e.target.parentNode.innerText);
+            }}
+            className={tab.title === current ? "nav-link active" : "nav-link"}
+          >
+            <Tab>{tab.title}</Tab>
+          </TabLink>
+        </li>
       ))}
-    </Nav>
+    </ul>
   );
 };

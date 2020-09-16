@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Nav from "./Nav";
 import LoginForm from "./LoginForm";
@@ -56,43 +57,15 @@ const getCookie = (cookieName) => {
 
 export default () => {
   return (
-    // <TopBar>
-    //   <LogoForm>
-    //     <span>Pantomath</span>
-    //   </LogoForm>
-    //   <Nav />
-    //   <LoginButton onClick={activateLoginForm}>
-    //     {getCookie("access") === "" ? (
-    //       <button>
-    //         <span>로그인</span>
-    //       </button>
-    //     ) : (
-    //       <button
-    //         onClick={() => {
-    //           let date = new Date();
-    //           date.setDate(date.getDate() - 1);
-    //           document.cookie = `access=; expires=${date.toUTCString()}; path=/;`;
-    //           document.cookie = `access=; expires=${date.toUTCString()}; path=/topics;`;
-    //           document.cookie = `likednewslist=; expires=${date.toUTCString()}; path=/;`;
-    //           document.cookie = `likednewslist=; expires=${date.toUTCString()}; path=/topics;`;
-    //           window.location.reload();
-    //         }}
-    //       >
-    //         <span>로그아웃</span>
-    //       </button>
-    //     )}
-    //   </LoginButton>
-
-    // </TopBar>
     <nav
       class="navbar navbar-expand navbar-dark"
-      style={{ backgroundColor: "#353b48" }}
+      style={{ backgroundColor: "#353b48", padding: "7px 300px" }}
     >
-      <a class="navbar-brand" href="/">
+      <Link to="/" class="navbar-brand">
         <span style={{ fontFamily: "Cedarville Cursive", fontSize: "21px" }}>
           pantomath
         </span>
-      </a>
+      </Link>
       <button
         class="navbar-toggler"
         type="button"
@@ -106,41 +79,7 @@ export default () => {
       </button>
 
       <div class="collapse navbar-collapse" id="navbarsExample06">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">
-              메인 메뉴 <span class="sr-only">(current)</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              추천 뉴스
-            </a>
-          </li>
-          <li class="nav-item dropdown">
-            <a
-              class="nav-link dropdown-toggle"
-              href="#"
-              id="dropdown06"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
-              카테고리
-            </a>
-            <div class="dropdown-menu" aria-labelledby="dropdown06">
-              <a class="dropdown-item" href="#">
-                Action
-              </a>
-              <a class="dropdown-item" href="#">
-                Another action
-              </a>
-              <a class="dropdown-item" href="#">
-                Something else here
-              </a>
-            </div>
-          </li>
-        </ul>
+        <Nav />
         <button
           class="form-inline my-2 my-md-0"
           style={{

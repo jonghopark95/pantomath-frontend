@@ -1,23 +1,28 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
-import { createGlobalStyle, ThemeProvider } from "styled-components";
-import GlobalStyles from "./GlobalStyles";
-import theme from "./theme";
+import { css, createGlobalStyle, ThemeProvider } from "styled-components";
 import reset from "styled-reset";
 
-const GlobalStyle = createGlobalStyle`
-    body{
-        /* @import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Josefin+Sans:ital@0;1&family=Poppins:wght@300;400&display=swap"); */
-
-        ${reset};
-        font-family: ${(props) => props.theme.fontFamily};
-    }
+const GlobalStyles = createGlobalStyle`
+  body{
+      ${reset};
+      font-family: ${(props) => props.theme.fontFamily};
+  }
 `;
+
+const theme = {
+  fontFamily: "Nanum Myeongjo",
+  putCenter: css`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  `,
+};
 
 ReactDOM.render(
   <React.StrictMode>
-    <ThemeProvider theme={{ fontFamily: "Nanum Myeongjo" }}>
+    <ThemeProvider theme={theme}>
       <App />
       <GlobalStyles />
     </ThemeProvider>
