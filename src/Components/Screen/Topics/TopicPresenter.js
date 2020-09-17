@@ -1,5 +1,6 @@
 //https://flatuicolors.com/palette/gb
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import SwiperCore, {
   Navigation,
@@ -22,31 +23,35 @@ import "swiper/components/scrollbar/scrollbar.scss";
 const MainContainer = styled.div`
   height: 100%;
   width: 100%;
-  /* margin: 0px 300px; */
-  display: flex;
+  /* margin: 0px 0px 0px 300px; */
   ${(props) => props.theme.putCenter}
 `;
 
 const KeywordContainer = styled.div`
   width: 20%;
-  height: calc(100% - 70px);
-  background-color: purple;
+  height: auto;
+  /* background-color: purple; */
   ${(props) => props.theme.putCenter}
+`;
+
+const NewsCameFrom = styled.div`
+  width: 100%;
+  height: 5%;
+  /* background-color: blue; */
 `;
 
 const NewsContainer = styled.div`
-  width: 80%;
-  height: calc(100% - 70px);
-  background-color: yellowgreen;
-  ${(props) => props.theme.putCenter}
+  width: 50%;
+  height: 100%;
+  /* ${(props) => props.theme.putCenter} */
 `;
 
 const KeywordBox = styled.div`
-  height: 600px;
+  /* height: 600px; */
   width: 300px;
   padding: 30px;
   box-sizing: content-box;
-  background-color: lavender;
+  /* background-color: lavender; */
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -54,25 +59,23 @@ const KeywordBox = styled.div`
 `;
 
 const Keyword = styled.div`
-  height: 530px;
   width: 100%;
-  overflow-y: scroll;
   &::-webkit-scrollbar {
     display: none;
   }
 `;
 
-const KeywordSet = styled.div``;
-
-const KeywordTitle = styled.span`
-  font-size: 40px;
+const KeywordSet = styled.div`
+  margin-bottom: 30px;
 `;
 
 const KeywordKey = styled.div`
   width: 100%;
   height: 30px;
-  background-color: purple;
-  ${(props) => props.theme.putCenter};
+  padding-left: 10px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 `;
 
 const KeywordValue = styled.div`
@@ -80,102 +83,142 @@ const KeywordValue = styled.div`
   height: auto;
   padding: 15px 5px;
   box-sizing: border-box;
-  background-color: khaki;
+  /* background-color: khaki; */
   display: grid;
   row-gap: 10px;
-  grid-template-columns: 50% 50%;
+  grid-template-columns: 33.3% 33.3% 33.3%;
   a {
     place-self: center;
     span {
-      font-size: 15px;
+      font-size: 12px;
     }
   }
 `;
 
 const KeywordLink = styled.a`
+  /* all: unset; */
   text-decoration: none;
+  :hover {
+    text-decoration: none;
+  }
+  cursor: pointer;
+  span {
+    color: #353b48;
+  }
+  span:hover {
+    /* all: unset; */
+    color: #7f8fa6;
+  }
 `;
 
 const NewsBox = styled.div`
   width: 100%;
-  height: 80%;
-  background-color: ghostwhite;
+  height: 100%;
+  background-color: white;
 `;
 
 const News = styled.div`
-  height: 90%;
-  margin: 23px 45px 0px 45px;
+  margin: 0px 20px 0px 20px;
   box-sizing: border-box;
-  background-color: purple;
+  /* background-color: purple; */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: space-between;
 `;
 
 const NewsTopBar = styled.div`
-  height: 30%;
   width: 100%;
-  background-color: khaki;
+  /* background-color: khaki; */
 `;
 
 const NewsTitle = styled.div`
-  height: 100px;
+  height: auto;
   width: 100%;
-  background-color: red;
+  /* background-color: red; */
   /* ${(props) => props.theme.putCenter} */
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  padding: 20px;
+  padding: 10px;
   box-sizing: border-box;
   span {
     font-size: 40px;
+    font-weight: 600;
     color: black;
   }
 `;
 
 const NewsKeyword = styled.div`
+  width: 100%;
   height: 20px;
-  width: 200px;
   padding: 20px;
   box-sizing: border-box;
-  background-color: yellow;
-  ${(props) => props.theme.putCenter}
+  /* background-color: yellow; */
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
   span {
-    font-size: 20px;
+    font-size: 15px;
     color: black;
   }
 `;
 
-const NewsBottomBar = styled.div`
-  height: 70%;
-  width: 100%;
-  background-color: indianred;
-  display: flex;
-`;
-
 const NewsContentContainer = styled.div`
-  width: 70%;
-  background-color: green;
+  width: 100%;
+  /* background-color: green; */
   position: relative;
   ${(props) => props.theme.putCenter}
 `;
 
 const NewsDescription = styled.div`
-  width: 600px;
-  height: 250px;
-  background-color: chartreuse;
+  width: 100%;
+  /* background-color: chartreuse; */
   padding: 20px;
   box-sizing: border-box;
   span {
-    font-size: 30px;
-    line-height: 1.3;
+    font-size: 25px;
+    line-height: 1.6;
     color: black;
   }
 `;
 
 const NewsInfoContainer = styled.div`
-  width: 30%;
+  width: 100%;
   background-color: pink;
   position: relative;
-  ${(props) => props.theme.putCenter}
+  padding: 0px 20px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+`;
+
+const NewsLink = styled.div`
+  width: 70%;
+  height: auto;
+  padding-left: 20px;
+  span {
+    font-size: 13px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  display: inline-block;
+`;
+
+const UserRespond = styled.div`
+  width: 30%;
+  height: auto;
+  padding-right: 25px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  span {
+    padding-right: 20px;
+  }
+  span:hover {
+    color: #7f8fa6;
+  }
 `;
 
 const EditorContainer = styled.div`
@@ -214,13 +257,33 @@ const NewsLinker = styled.div`
   right: 0;
 `;
 
-const CommunicateContainer = styled.div`
-  width: 100%;
-  height: 19%;
-  position: absolute;
-  bottom: 0;
-  background-color: purple;
-  ${(props) => props.theme.putCenter};
+const ThumbDiv = styled.div`
+  all: unset;
+  svg {
+    color: #353b48;
+  }
+  svg:hover {
+    color: #7f8fa6;
+  }
+`;
+
+const Hr = styled.hr`
+  all: unset;
+  /* border-top: 1px solid #dcdde1; */
+  border-top: 1px solid #7f8fa6;
+  margin: 1.5rem;
+`;
+
+const LinkToNews = styled.a`
+  text-decoration: none;
+  color: #353b48;
+  display: flex;
+  align-items: center;
+
+  &:hover {
+    color: #7f8fa6;
+    text-decoration: none;
+  }
 `;
 
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Mousewheel]);
@@ -295,6 +358,19 @@ export default (props) => {
     }
   };
 
+  const requestToLink = async (e, id) => {
+    // e.preventDefault();
+    // console.log(id);
+    try {
+      axios.post("/link/", {
+        user: getCookie("access"),
+        newsId: id,
+      });
+    } catch {
+      console.log("error");
+    }
+  };
+
   const [newsListCookie, setNewsListCookie] = useState(
     getCookie("likednewslist")
   );
@@ -305,29 +381,187 @@ export default (props) => {
   const swiperParams = {
     mousewheel: true,
     direction: "vertical",
+    autoHeight: true,
+    speed: 1000,
+  };
+
+  const getNewsCompanyName = (newsLink) => {
+    let splitedNewsLink = newsLink.split("/")[2];
+
+    // splitedNewsLink.splice(splitedNewsLink.indexOf("www"), 1);
+    // splitedNewsLink.splice(splitedNewsLink.indexOf("co"), 1);
+    // splitedNewsLink.splice(splitedNewsLink.indexOf("kr"), 1);
+
+    // console.log(splitedNewsLink);
+  };
+
+  const CategoryDiv = styled.div`
+    padding: 10px 0px 0px 40px;
+    height: 5%;
+    width: 50%;
+    span {
+      font-size: 20px;
+    }
+  `;
+
+  const KeywordTitle = styled.div`
+    width: 100%;
+    height: 40%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  `;
+
+  const giveStarByImportance = (str) => {
+    console.log(str);
+    if (str === "very important") {
+      return (
+        <>
+          <i class="far fa-star"></i>
+          <i class="far fa-star"></i>
+          <i class="far fa-star"></i>
+          <i class="far fa-star"></i>
+        </>
+      );
+    } else if (str === "high") {
+      return (
+        <>
+          <i class="far fa-star"></i>
+          <i class="far fa-star"></i>
+          <i class="far fa-star"></i>
+        </>
+      );
+    } else if (str === "middle") {
+      return (
+        <>
+          <i class="far fa-star"></i>
+          <i class="far fa-star"></i>
+        </>
+      );
+    } else if (str === "low") {
+      return (
+        <>
+          <i class="far fa-star"></i>
+        </>
+      );
+    }
+  };
+
+  const getCurrentCategory = () => {
+    let splitedUrl = window.location.href.split("/");
+
+    let currentCategory = "";
+
+    switch (splitedUrl[4]) {
+      case "politics":
+        currentCategory = "정치";
+        break;
+      case "economy":
+        currentCategory = "경제";
+        break;
+      case "society":
+        currentCategory = "사회";
+        break;
+      case "culture":
+        currentCategory = "문화";
+        break;
+      case "international":
+        currentCategory = "국제";
+        break;
+      case "district":
+        currentCategory = "지역";
+        break;
+      case "sports":
+        currentCategory = "스포츠";
+        break;
+      case "it-science":
+        currentCategory = "IT 과학";
+        break;
+      default:
+        currentCategory = "idunno";
+    }
+    return currentCategory;
   };
 
   return (
     <>
       <MainContainer>
+        <KeywordContainer>
+          <KeywordBox>
+            <KeywordTitle style={{ marginBottom: "20px" }}>
+              <span
+                style={{
+                  marginRight: "20px",
+                  fontSize: "40px",
+                  fontWeight: "bold",
+                  color: "#2f3640",
+                }}
+              >
+                {keywordDict.high.length !== 0 &&
+                  keywordDict["high"][0].category}
+              </span>
+            </KeywordTitle>
+            <KeywordTitle style={{ marginBottom: "60px" }}>
+              <span
+                style={{
+                  marginLeft: "5px",
+                  fontSize: "20px",
+                  color: "#353b48",
+                }}
+              >
+                {window.location.href.split("&").length !== 1 &&
+                  decodeURIComponent(
+                    window.location.href.split("&")[1]
+                  ).replace("keyword=", "")}
+              </span>
+            </KeywordTitle>
+
+            <Keyword>
+              {keywordDict.high.length !== 0 &&
+                Object.keys(keywordDict).map((key, index) => (
+                  <>
+                    <KeywordSet key={index}>
+                      <KeywordKey>
+                        <span style={{ fontSize: "10px" }}>
+                          {giveStarByImportance(key)}
+                        </span>
+                      </KeywordKey>
+
+                      <KeywordValue>
+                        {Object.values(keywordDict[key]).map((value, index) => (
+                          <KeywordLink
+                            key={index}
+                            href={`?category=${keywordDict[key][0].category}&keyword=${value.keyword}`}
+                          >
+                            <span id="keyword-data">{value.keyword}</span>
+                          </KeywordLink>
+                        ))}
+                      </KeywordValue>
+                    </KeywordSet>
+                  </>
+                ))}
+            </Keyword>
+          </KeywordBox>
+        </KeywordContainer>
         <NewsContainer>
+          <CategoryDiv>{/* <span>{getCurrentCategory()}</span> */}</CategoryDiv>
           <NewsBox>
             <Swiper
               {...swiperParams}
               style={{ width: "100%", height: "100%" }}
-              slidesPerView={1}
-              pagination={{ clickable: true }}
-              // scrollbar={{ draggable: true }}
+              slidesPerView={2}
+              pagination={{ clickable: true, color: "black" }}
               // onSwiper={(swiper) => console.log(swiper)}
               // navigation
               touchStartForcePreventDefault={true}
               onSlideChange={(e) => {
-                requestToRead(
-                  e,
-                  document
-                    .querySelector(".swiper-slide-active")
-                    .querySelector(".fake_data").innerHTML
-                );
+                document.querySelector(".swiper-slide-active") !== null &&
+                  requestToRead(
+                    e,
+                    document
+                      .querySelector(".swiper-slide-active")
+                      .querySelector(".fake_data").innerHTML
+                  );
                 // console.log(e.target);
               }}
             >
@@ -336,85 +570,81 @@ export default (props) => {
                   <News>
                     <NewsTopBar>
                       <NewsTitle>
-                        {parse(`
+                        {news &&
+                          parse(`
                           <span>${news.title}</span>
                           `)}
                       </NewsTitle>
-                      <NewsKeyword>
-                        <span>키워드 : {news.keyword}</span>
-                      </NewsKeyword>
-                    </NewsTopBar>
-                    <NewsBottomBar>
-                      <NewsContentContainer>
-                        <NewsDescription>
-                          {parse(`
-                          <span>${news.description}</span>
-                          `)}
-                        </NewsDescription>
-                        <a
-                          href={news.original_link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <NewsLinker />
-                        </a>
-                      </NewsContentContainer>
-                      <NewsInfoContainer>
-                        <EditorContainer>
-                          <EditorAvatar />
-                          <EditorName />
-                        </EditorContainer>
-                        <CommunicateContainer>
+                      <div style={{ display: "flex", alignItems: "center" }}>
+                        <NewsLink>
+                          <LinkToNews
+                            href={news && news.original_link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={(e) => {
+                              requestToLink(e, news.id);
+                              console.log("ehehe");
+                            }}
+                          >
+                            <i
+                              class="fas fa-link"
+                              style={{
+                                fontSize: "19px",
+                                color: "#353b48",
+                                paddingRight: "7px",
+                              }}
+                            ></i>
+                            <span>{news && news.original_link}</span>
+                          </LinkToNews>
+                        </NewsLink>
+                        <UserRespond>
+                          <KeywordLink
+                            href={
+                              news !== undefined &&
+                              `?category=${getCurrentCategory()}&keyword=${
+                                news.keyword
+                              }`
+                            }
+                          >
+                            <span>{news && news.keyword}</span>
+                          </KeywordLink>
+
                           <button
                             onClick={(e) => {
                               requestLike(e, news.id);
                             }}
+                            style={{ all: "unset", cursor: "pointer" }}
                           >
-                            {console.log(newsListCookie)}
+                            {/* {console.log(newsListCookie)} */}
 
-                            {newsListCookie.includes(news.id) ? (
-                              <i class="fas fa-heart"></i>
-                            ) : (
-                              <i class="far fa-heart"></i>
-                            )}
+                            <ThumbDiv>
+                              {newsListCookie.includes(news && news.id) ? (
+                                <i class="fas fa-thumbs-up"></i>
+                              ) : (
+                                <i class="far fa-thumbs-up"></i>
+                              )}
+                            </ThumbDiv>
                           </button>
-                          <button>기사로 이동</button>
-                          <p className="fake_data">{news.id}</p>
-                        </CommunicateContainer>
-                      </NewsInfoContainer>
-                    </NewsBottomBar>
+                          <p className="fake_data" style={{ display: "none" }}>
+                            {news && news.id}
+                          </p>
+                        </UserRespond>
+                      </div>
+                    </NewsTopBar>
+                    <Hr />
+                    <NewsContentContainer>
+                      <NewsDescription>
+                        {parse(`
+                          <span>${news && news.description}</span>
+                          `)}
+                      </NewsDescription>
+                    </NewsContentContainer>
                   </News>
                 </SwiperSlide>
               ))}
             </Swiper>
           </NewsBox>
         </NewsContainer>
-        <KeywordContainer>
-          <KeywordBox>
-            <KeywordTitle>
-              {keywordDict.high.length !== 0 && keywordDict["high"][0].category}
-            </KeywordTitle>
-            <Keyword>
-              {keywordDict.high.length !== 0 &&
-                Object.keys(keywordDict).map((key, index) => (
-                  <KeywordSet key={index}>
-                    <KeywordKey>{key}</KeywordKey>
-
-                    <KeywordValue>
-                      {Object.values(keywordDict[key]).map((value, index) => (
-                        <KeywordLink
-                          key={index}
-                          href={`?category=${keywordDict[key][0].category}&keyword=${value.keyword}`}
-                        >
-                          <span>{value.keyword}</span>
-                        </KeywordLink>
-                      ))}
-                    </KeywordValue>
-                  </KeywordSet>
-                ))}
-            </Keyword>
-          </KeywordBox>
-        </KeywordContainer>
       </MainContainer>
     </>
   );
