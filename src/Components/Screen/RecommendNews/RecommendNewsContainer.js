@@ -1,5 +1,7 @@
 import React from "react";
 import useAxios from "../useAxios";
+import WarningSign from "./Presenter/PresentWarningSign";
+import LoadingSign from "./Presenter/PresentLoading";
 
 const getCookie = (cookieName) => {
   const name = cookieName + "=";
@@ -27,11 +29,48 @@ export default () => {
       user: getCookie("access"),
     },
   });
-  console.log(loading, data);
-  return (
-    <>
-      <h1>haha</h1>
-      <h2>hoho</h2>
-    </>
-  );
+  if (loading === true) {
+    return (
+      <div
+        style={{
+          width: "100%",
+          height: "100%",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <LoadingSign />
+      </div>
+    );
+  } else if (loading === false && data === null) {
+    return (
+      <div
+        style={{
+          width: "100%",
+          height: "100%",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <WarningSign />
+      </div>
+    );
+  } else if (loading === false && data !== null) {
+    return (
+      <div
+        style={{
+          width: "100%",
+          height: "100%",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <h1>Recommend</h1>
+        {console.log(data["data"]["data"])}
+      </div>
+    );
+  }
 };

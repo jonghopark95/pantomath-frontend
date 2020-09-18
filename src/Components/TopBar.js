@@ -1,33 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import styled from "styled-components";
 import Nav from "./Nav";
 import LoginForm from "./LoginForm";
-
-const TopBar = styled.header`
-  height: 70px;
-  width: 100%;
-  display: flex;
-  justify-content: space-around;
-`;
-
-const LogoForm = styled.div`
-  height: 100%;
-  width: 365px;
-  font-size: 50px;
-
-  ${(props) => props.theme.putCenter};
-  span {
-    font-family: "Dancing Script", cursive;
-  }
-`;
-
-const LoginButton = styled.div`
-  height: 100%;
-  width: 150px;
-  font-size: 20px;
-  ${(props) => props.theme.putCenter};
-`;
 
 const activateLoginForm = () => {
   // 버튼 누를 시
@@ -59,7 +33,12 @@ export default () => {
   return (
     <nav
       class="navbar navbar-expand navbar-dark"
-      style={{ backgroundColor: "#353b48", padding: "7px 300px" }}
+      style={{
+        backgroundColor: "#353b48",
+        padding: "7px 300px",
+        position: "absolute",
+        width: "100%",
+      }}
     >
       <Link to="/" class="navbar-brand">
         <span style={{ fontFamily: "Cedarville Cursive", fontSize: "21px" }}>

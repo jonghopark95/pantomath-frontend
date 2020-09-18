@@ -30,14 +30,8 @@ const MainContainer = styled.div`
 const KeywordContainer = styled.div`
   width: 20%;
   height: auto;
-  /* background-color: purple; */
-  ${(props) => props.theme.putCenter}
-`;
-
-const NewsCameFrom = styled.div`
-  width: 100%;
-  height: 5%;
-  /* background-color: blue; */
+  display: flex;
+  align-items: center;
 `;
 
 const NewsContainer = styled.div`
@@ -413,7 +407,6 @@ export default (props) => {
   `;
 
   const giveStarByImportance = (str) => {
-    console.log(str);
     if (str === "very important") {
       return (
         <>
@@ -548,7 +541,7 @@ export default (props) => {
           <NewsBox>
             <Swiper
               {...swiperParams}
-              style={{ width: "100%", height: "100%" }}
+              style={{ width: "100%", height: "100%", marginTop: "50px" }}
               slidesPerView={2}
               pagination={{ clickable: true, color: "black" }}
               // onSwiper={(swiper) => console.log(swiper)}

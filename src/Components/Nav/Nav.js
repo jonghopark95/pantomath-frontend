@@ -81,6 +81,41 @@ const TabList = [
   },
 ];
 
+const currentLoc = () => {
+  let currentByEng = window.location.href.split("?")[0].split("/")[4];
+  let currentByKor = "";
+
+  switch (currentByEng) {
+    case "politics":
+      currentByKor = "정치";
+      break;
+    case "economy":
+      currentByKor = "경제";
+      break;
+    case "society":
+      currentByKor = "사회";
+      break;
+    case "culture":
+      currentByKor = "문화";
+      break;
+    case "international":
+      currentByKor = "국제";
+      break;
+    case "district":
+      currentByKor = "지역";
+      break;
+    case "sports":
+      currentByKor = "스포츠";
+      break;
+    case "it-science":
+      currentByKor = "IT 과학";
+      break;
+    default:
+      currentByKor = "idunno";
+  }
+  return currentByKor;
+};
+
 export default (props) => {
   const [current, setCurrent] = useState();
 
@@ -94,7 +129,9 @@ export default (props) => {
             onClick={(e) => {
               setCurrent(e.target.parentNode.innerText);
             }}
-            className={tab.title === current ? "nav-link active" : "nav-link"}
+            className={
+              tab.title === currentLoc() ? "nav-link active" : "nav-link"
+            }
           >
             <Tab>{tab.title}</Tab>
           </TabLink>
