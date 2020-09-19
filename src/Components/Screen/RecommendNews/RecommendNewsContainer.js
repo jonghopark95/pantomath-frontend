@@ -2,6 +2,7 @@ import React from "react";
 import useAxios from "../useAxios";
 import WarningSign from "./Presenter/PresentWarningSign";
 import LoadingSign from "./Presenter/PresentLoading";
+import RecommendNewsPresenter from "./Presenter/RecommendNewsPresenter";
 
 const getCookie = (cookieName) => {
   const name = cookieName + "=";
@@ -59,18 +60,9 @@ export default () => {
     );
   } else if (loading === false && data !== null) {
     return (
-      <div
-        style={{
-          width: "100%",
-          height: "100%",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        <h1>Recommend</h1>
-        {console.log(data["data"]["data"])}
-      </div>
+      <>
+        <RecommendNewsPresenter data={data["data"]["data"]} />
+      </>
     );
   }
 };
