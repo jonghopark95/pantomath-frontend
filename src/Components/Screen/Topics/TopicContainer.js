@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import useAxios from "../useAxios";
 import TopicPresenter from "./TopicPresenter";
+import LoadingSign from "../RecommendNews/Presenter/PresentLoading";
 
 export default (props) => {
   let currentCategory = props.category;
@@ -124,10 +125,26 @@ export default (props) => {
     }
   }
 
-  return (
-    <TopicPresenter
-      keywordData={keywordDataToShow}
-      newsData={newsDataToShow}
-    ></TopicPresenter>
-  );
+  if (newsDataLoading === true) {
+    return (
+      <div
+        style={{
+          width: "100%",
+          height: "100%",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <LoadingSign />
+      </div>
+    );
+  } else if (newsDataLoading === false) {
+    return (
+      <TopicPresenter
+        keywordData={keywordDataToShow}
+        newsData={newsDataToShow}
+      />
+    );
+  }
 };

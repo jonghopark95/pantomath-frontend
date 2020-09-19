@@ -113,6 +113,12 @@ const currentLoc = () => {
     default:
       currentByKor = "idunno";
   }
+
+  if (currentByKor === "idunno") {
+    currentByEng = window.location.href.split("?")[0].split("/")[3];
+    if (currentByEng === "recommend") currentByKor = "추천 뉴스";
+    else if (currentByEng === "") currentByKor = "주요 뉴스";
+  }
   return currentByKor;
 };
 
