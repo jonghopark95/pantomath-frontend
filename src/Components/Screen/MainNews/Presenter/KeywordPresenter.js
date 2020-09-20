@@ -3,15 +3,15 @@ import styled from "styled-components";
 
 const KeywordContainer = styled.div`
   width: 20%;
-  height: auto;
+  height: 100%;
   display: flex;
   align-items: center;
-  margin-top: 500px;
 `;
 
 const KeywordBox = styled.div`
   width: 300px;
   padding: 30px;
+  margin-top: 600px;
   box-sizing: content-box;
 
   display: flex;
