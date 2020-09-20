@@ -4,6 +4,7 @@ import useAxios from "../useAxios";
 
 import KeywordPresenter from "./Presenter/KeywordPresenter";
 import NewsPresenter from "./Presenter/NewsPresenter";
+import WarningPresenter from "./Presenter/WarningPresenter";
 
 export default () => {
   // API 요청
@@ -50,12 +51,12 @@ export default () => {
           justifyContent: "center",
         }}
       >
-        <LoadingSign />
+        {/* <LoadingSign /> */}
       </div>
     );
   }
   // 로딩이 끝났을 경우 데이터를 정렬한다.
-  else if (loading !== true) {
+  if (loading !== true) {
     let resData = data.data;
     const politicsKw = resData.filter((data) => data.category === "정치");
     const economicKw = resData.filter((data) => data.category === "경제");
@@ -88,7 +89,13 @@ export default () => {
         }}
       >
         <KeywordPresenter data={keywordContainer} />
-        {newsLoading === false && <NewsPresenter data={newsData} />}
+        {newsLoading === true && <LoadingSign />}
+        {newsLoading === false && newsData.data.length !== 10 && (
+          <WarningPresenter />
+        )}
+        {newsLoading === false && newsData.data.length === 10 && (
+          <NewsPresenter data={newsData} />
+        )}
       </div>
     );
   }

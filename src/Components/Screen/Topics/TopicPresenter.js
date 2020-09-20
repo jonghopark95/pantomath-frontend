@@ -1,6 +1,5 @@
 //https://flatuicolors.com/palette/gb
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
 import styled from "styled-components";
 import SwiperCore, {
   Navigation,
@@ -143,21 +142,6 @@ const NewsTitle = styled.div`
   }
 `;
 
-const NewsKeyword = styled.div`
-  width: 100%;
-  height: 20px;
-  padding: 20px;
-  box-sizing: border-box;
-  /* background-color: yellow; */
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  span {
-    font-size: 15px;
-    color: black;
-  }
-`;
-
 const NewsContentContainer = styled.div`
   width: 100%;
   /* background-color: green; */
@@ -175,16 +159,6 @@ const NewsDescription = styled.div`
     line-height: 1.6;
     color: black;
   }
-`;
-
-const NewsInfoContainer = styled.div`
-  width: 100%;
-  background-color: pink;
-  position: relative;
-  padding: 0px 20px;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
 `;
 
 const NewsLink = styled.div`
@@ -213,42 +187,6 @@ const UserRespond = styled.div`
   span:hover {
     color: #7f8fa6;
   }
-`;
-
-const EditorContainer = styled.div`
-  width: 100%;
-  height: 75%;
-  margin-top: 6%;
-  background-color: blue;
-  position: absolute;
-  top: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
-`;
-
-const EditorAvatar = styled.div`
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  background-color: white;
-`;
-
-const EditorName = styled.div`
-  width: 200px;
-  height: 40px;
-  background-color: white;
-`;
-
-const NewsLinker = styled.div`
-  width: 50px;
-  height: 50px;
-  margin: 20px;
-  background-color: black;
-  position: absolute;
-  top: 0;
-  right: 0;
 `;
 
 const ThumbDiv = styled.div`
@@ -377,16 +315,6 @@ export default (props) => {
     direction: "vertical",
     autoHeight: true,
     speed: 1000,
-  };
-
-  const getNewsCompanyName = (newsLink) => {
-    let splitedNewsLink = newsLink.split("/")[2];
-
-    // splitedNewsLink.splice(splitedNewsLink.indexOf("www"), 1);
-    // splitedNewsLink.splice(splitedNewsLink.indexOf("co"), 1);
-    // splitedNewsLink.splice(splitedNewsLink.indexOf("kr"), 1);
-
-    // console.log(splitedNewsLink);
   };
 
   const CategoryDiv = styled.div`

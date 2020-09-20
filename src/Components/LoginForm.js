@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import { useHistory, Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 // import useAxios from "./Screen/useAxios";
 import axios from "axios";
 

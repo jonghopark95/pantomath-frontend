@@ -12,8 +12,10 @@ const rotation = keyframes`
 `;
 
 const Div = styled.div`
-  width: 600px;
-  height: 800px;
+  /* width: 600px;
+  height: 800px; */
+  width: 50%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;

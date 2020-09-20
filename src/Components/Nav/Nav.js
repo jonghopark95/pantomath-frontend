@@ -1,13 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-
-const Nav = styled.nav`
-  width: 1080px;
-  height: 70px;
-  display: flex;
-  justify-content: flex-end;
-`;
 
 const Tab = styled.span`
   height: 100%;
@@ -123,8 +116,6 @@ const currentLoc = () => {
 };
 
 export default (props) => {
-  const [current, setCurrent] = useState();
-
   return (
     <ul class="navbar-nav mr-auto">
       {TabList.map((tab) => (
@@ -132,9 +123,6 @@ export default (props) => {
           <TabLink
             to={tab.link}
             key={tab.title}
-            onClick={(e) => {
-              setCurrent(e.target.parentNode.innerText);
-            }}
             className={
               tab.title === currentLoc() ? "nav-link active" : "nav-link"
             }

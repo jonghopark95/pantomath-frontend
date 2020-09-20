@@ -85,16 +85,18 @@ export default (props) => {
     <KeywordContainer>
       <KeywordBox>
         <KeywordTitle style={{ marginBottom: "60px" }}>
-          <span
-            style={{
-              marginRight: "20px",
-              fontSize: "30px",
-              fontWeight: "bold",
-              color: "#2f3640",
-            }}
-          >
-            오늘의 키워드
-          </span>
+          <KeywordLink href="/">
+            <span
+              style={{
+                marginRight: "20px",
+                fontSize: "30px",
+                fontWeight: "bold",
+                color: "#2f3640",
+              }}
+            >
+              오늘의 키워드
+            </span>
+          </KeywordLink>
         </KeywordTitle>
 
         <Keyword>
