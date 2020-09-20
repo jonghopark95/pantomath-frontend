@@ -132,7 +132,7 @@ export default () => {
               value={email}
               id="inputEmail"
               class="form-control"
-              placeholder="Email address"
+              placeholder="email address"
               required
               autofocus
               style={{ marginTop: "60px", marginBottom: "30px" }}
@@ -147,7 +147,7 @@ export default () => {
               onChange={(e) => setPassword(e.target.value)}
               id="inputPassword"
               class="form-control"
-              placeholder="Password"
+              placeholder="password"
               required
               style={{ marginBottom: "70px" }}
             />
@@ -185,15 +185,33 @@ export default () => {
       {register === true && (
         <form class="form-signin" method="POST" onSubmit={requestRegister}>
           <div class="text-center mb-4">
+            <button onClick={() => setRegister(false)} style={{ all: "unset" }}>
+              <i
+                class="fas fa-arrow-left"
+                style={{
+                  top: "7px",
+                  left: "15px",
+                  position: "absolute",
+                  fontSize: "34px",
+                  color: "#7f8fa6",
+                  cursor: "pointer",
+                }}
+              ></i>
+            </button>
             <i
               class="fab fa-product-hunt"
               style={{
                 fontSize: "60px",
-                color: "#996478",
+                color: "#7f8fa6",
                 marginBottom: "20px",
               }}
             ></i>
-            <h1 class="h3 mb-3 font-weight-normal">회원가입</h1>
+            <h1
+              class="h3 mb-3 font-weight-normal"
+              style={{ marginTop: "10px" }}
+            >
+              회원가입
+            </h1>
           </div>
           <div class="form-label-group">
             <input
@@ -226,7 +244,10 @@ export default () => {
             type="submit"
             class="btn btn-lg btn-primary btn-block"
             style={{
-              marginBottom: "20px",
+              marginBottom: "30px",
+              backgroundColor: "#7f8fa6",
+              borderColor: "#7f8fa6",
+              fontSize: "15px",
             }}
           >
             확인

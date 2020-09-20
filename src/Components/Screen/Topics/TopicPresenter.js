@@ -23,14 +23,17 @@ const MainContainer = styled.div`
   height: 100%;
   width: 100%;
   /* margin: 0px 0px 0px 300px; */
+  overflow: scroll;
   ${(props) => props.theme.putCenter}
 `;
 
 const KeywordContainer = styled.div`
   width: 20%;
-  height: auto;
-  display: flex;
-  align-items: center;
+  height: 100%;
+  margin-top: 150px;
+
+  /* display: flex;
+  align-items: center; */
 `;
 
 const NewsContainer = styled.div`
@@ -338,31 +341,31 @@ export default (props) => {
     if (str === "very important") {
       return (
         <>
-          <i class="far fa-star"></i>
-          <i class="far fa-star"></i>
-          <i class="far fa-star"></i>
-          <i class="far fa-star"></i>
+          <i className="far fa-star"></i>
+          <i className="far fa-star"></i>
+          <i className="far fa-star"></i>
+          <i className="far fa-star"></i>
         </>
       );
     } else if (str === "high") {
       return (
         <>
-          <i class="far fa-star"></i>
-          <i class="far fa-star"></i>
-          <i class="far fa-star"></i>
+          <i className="far fa-star"></i>
+          <i className="far fa-star"></i>
+          <i className="far fa-star"></i>
         </>
       );
     } else if (str === "middle") {
       return (
         <>
-          <i class="far fa-star"></i>
-          <i class="far fa-star"></i>
+          <i className="far fa-star"></i>
+          <i className="far fa-star"></i>
         </>
       );
     } else if (str === "low") {
       return (
         <>
-          <i class="far fa-star"></i>
+          <i className="far fa-star"></i>
         </>
       );
     }
@@ -508,7 +511,7 @@ export default (props) => {
                             }}
                           >
                             <i
-                              class="fas fa-link"
+                              className="fas fa-link"
                               style={{
                                 fontSize: "19px",
                                 color: "#353b48",
@@ -540,9 +543,9 @@ export default (props) => {
 
                             <ThumbDiv>
                               {newsListCookie.includes(news && news.id) ? (
-                                <i class="fas fa-thumbs-up"></i>
+                                <i className="fas fa-thumbs-up"></i>
                               ) : (
-                                <i class="far fa-thumbs-up"></i>
+                                <i className="far fa-thumbs-up"></i>
                               )}
                             </ThumbDiv>
                           </button>

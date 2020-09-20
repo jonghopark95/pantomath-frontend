@@ -32,7 +32,7 @@ const getCookie = (cookieName) => {
 export default () => {
   return (
     <nav
-      class="navbar navbar-expand navbar-dark"
+      className="navbar navbar-expand navbar-dark"
       style={{
         backgroundColor: "#353b48",
         padding: "7px 300px",
@@ -40,13 +40,13 @@ export default () => {
         width: "100%",
       }}
     >
-      <Link to="/" class="navbar-brand">
+      <a href="/" className="navbar-brand">
         <span style={{ fontFamily: "Cedarville Cursive", fontSize: "21px" }}>
           pantomath
         </span>
-      </Link>
+      </a>
       <button
-        class="navbar-toggler"
+        className="navbar-toggler"
         type="button"
         data-toggle="collapse"
         data-target="#navbarsExample06"
@@ -54,13 +54,13 @@ export default () => {
         aria-expanded="false"
         aria-label="Toggle navigation"
       >
-        <span class="navbar-toggler-icon"></span>
+        <span className="navbar-toggler-icon"></span>
       </button>
 
-      <div class="collapse navbar-collapse" id="navbarsExample06">
+      <div className="collapse navbar-collapse" id="navbarsExample06">
         <Nav />
         <button
-          class="form-inline my-2 my-md-0"
+          className="form-inline my-2 my-md-0"
           style={{
             all: "unset",
             backgroundColor: "#343A40",
@@ -70,7 +70,10 @@ export default () => {
           onClick={activateLoginForm}
         >
           {getCookie("access") === "" ? (
-            <span class="nav-item" style={{ color: "white", fontSize: "15px" }}>
+            <span
+              className="nav-item"
+              style={{ color: "white", fontSize: "15px" }}
+            >
               로그인
             </span>
           ) : (
