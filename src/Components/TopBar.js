@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import Nav from "./Nav";
 import LoginForm from "./LoginForm";
 
@@ -30,6 +30,7 @@ const getCookie = (cookieName) => {
 };
 
 export default () => {
+  let history = useHistory();
   return (
     <nav
       className="navbar navbar-expand navbar-dark"
@@ -93,6 +94,7 @@ export default () => {
                   document.cookie = `access=; expires=${date.toUTCString()}; path=/topics;`;
                   document.cookie = `likednewslist=; expires=${date.toUTCString()}; path=/;`;
                   document.cookie = `likednewslist=; expires=${date.toUTCString()}; path=/topics;`;
+                  history.push("/");
                   window.location.reload();
                   activateLoginForm();
                 }}
