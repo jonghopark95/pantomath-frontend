@@ -1,14 +1,24 @@
 import React from "react";
-import styled from "styled-components";
+import { Title, Form } from "../Style/MyPageStyle";
 
-export default () => {
+export default (props) => {
+  const data = props.data;
+  console.log(data);
   return (
-    <div>
-      <h1>dfdf</h1>
-      <h1>dfdf</h1>
-      <h1>dfdf</h1>
-      <h1>dfdf</h1>
-      <h1>dfdf</h1>
-    </div>
+    <>
+      <Title>링크 들어간 뉴스</Title>
+      <Form>
+        <span>카테고리</span>
+        <span>키워드</span>
+        <span>제목</span>
+        {data.map((test) => (
+          <>
+            <div>{test.fields.category}</div>
+            <div>{test.fields.keyword}</div>
+            <div>{test.fields.title}</div>
+          </>
+        ))}
+      </Form>
+    </>
   );
 };

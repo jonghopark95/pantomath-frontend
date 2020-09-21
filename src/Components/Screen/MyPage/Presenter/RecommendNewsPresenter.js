@@ -28,7 +28,7 @@ export default (props) => {
   }
 
   return (
-    <div>
+    <>
       <h1>성향</h1>
       <PercentageDiv>
         {Object.entries(percentage).map(([key, value]) => (
@@ -39,6 +39,6 @@ export default (props) => {
           </>
         ))}
       </PercentageDiv>
-    </div>
+    </>
   );
 };
