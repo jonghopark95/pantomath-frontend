@@ -4,7 +4,7 @@ import styled from "styled-components";
 const KeywordContainer = styled.div`
   width: 20%;
   height: 100%;
-  margin-top: 150px;
+  margin-top: 8%;
 `;
 
 const KeywordBox = styled.div`
