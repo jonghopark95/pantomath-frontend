@@ -11,7 +11,7 @@ const KeywordContainer = styled.div`
 const KeywordBox = styled.div`
   width: 300px;
   padding: 30px;
-  margin-top: 600px;
+  margin-top: 500px;
   box-sizing: content-box;
 
   display: flex;

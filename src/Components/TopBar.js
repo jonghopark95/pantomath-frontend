@@ -67,28 +67,38 @@ export default () => {
             borderColor: "#343A40",
             cursor: "pointer",
           }}
-          onClick={activateLoginForm}
         >
           {getCookie("access") === "" ? (
             <span
               className="nav-item"
               style={{ color: "white", fontSize: "15px" }}
+              onClick={activateLoginForm}
             >
               로그인
             </span>
           ) : (
-            <div
-              onClick={() => {
-                let date = new Date();
-                date.setDate(date.getDate() - 1);
-                document.cookie = `access=; expires=${date.toUTCString()}; path=/;`;
-                document.cookie = `access=; expires=${date.toUTCString()}; path=/topics;`;
-                document.cookie = `likednewslist=; expires=${date.toUTCString()}; path=/;`;
-                document.cookie = `likednewslist=; expires=${date.toUTCString()}; path=/topics;`;
-                window.location.reload();
-              }}
-            >
-              <span style={{ color: "white" }}>로그아웃</span>
+            <div style={{ display: "flex" }}>
+              <div>
+                <a href="/mypage" style={{ all: "unset" }}>
+                  <span style={{ color: "white", marginRight: "30px" }}>
+                    마이 페이지
+                  </span>
+                </a>
+              </div>
+              <div
+                onClick={() => {
+                  let date = new Date();
+                  date.setDate(date.getDate() - 1);
+                  document.cookie = `access=; expires=${date.toUTCString()}; path=/;`;
+                  document.cookie = `access=; expires=${date.toUTCString()}; path=/topics;`;
+                  document.cookie = `likednewslist=; expires=${date.toUTCString()}; path=/;`;
+                  document.cookie = `likednewslist=; expires=${date.toUTCString()}; path=/topics;`;
+                  window.location.reload();
+                  activateLoginForm();
+                }}
+              >
+                <span style={{ color: "white" }}>로그아웃</span>
+              </div>
             </div>
           )}
         </button>
