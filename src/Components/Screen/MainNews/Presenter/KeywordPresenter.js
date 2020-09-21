@@ -4,14 +4,13 @@ import styled from "styled-components";
 const KeywordContainer = styled.div`
   width: 20%;
   height: 100%;
-  display: flex;
-  align-items: center;
+  margin-top: 150px;
 `;
 
 const KeywordBox = styled.div`
   width: 300px;
   padding: 30px;
-  margin-top: 500px;
+  /* margin-top: 500px; */
   box-sizing: content-box;
 
   display: flex;
