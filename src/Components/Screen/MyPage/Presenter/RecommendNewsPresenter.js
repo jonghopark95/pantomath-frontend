@@ -2,7 +2,11 @@ import React from "react";
 import styled from "styled-components";
 
 const PercentageDiv = styled.div`
-  display: flex;
+  display: grid;
+  width: 100%;
+  grid-template-columns: 50% 50%;
+  gap: 30px 10px;
+  font-size: 25px;
 `;
 
 export default (props) => {
@@ -27,15 +31,14 @@ export default (props) => {
     }%`;
   }
 
+  console.log(percentage);
   return (
     <>
-      <h1>성향</h1>
       <PercentageDiv>
         {Object.entries(percentage).map(([key, value]) => (
           <>
-            <span>
-              {key} : {value}
-            </span>
+            <span>{key}</span>
+            <span>{value}</span>
           </>
         ))}
       </PercentageDiv>

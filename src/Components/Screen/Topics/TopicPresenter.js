@@ -194,11 +194,15 @@ const UserRespond = styled.div`
 
 const ThumbDiv = styled.div`
   all: unset;
+  display: none;
   svg {
     color: #353b48;
   }
   svg:hover {
     color: #7f8fa6;
+  }
+  &.activate {
+    display: block;
   }
 `;
 
@@ -224,6 +228,14 @@ const LinkToNews = styled.a`
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Mousewheel]);
 
 export default (props) => {
+  const [thumb, setThumb] = useState(0);
+
+  const thumbSelector = (newsId) => {
+    if (newsId) {
+      return setThumb(newsListCookie.includes(newsId));
+    }
+  };
+
   let newsData = props.newsData;
   let keywordData = props.keywordData;
   let veryImportantKeywordData = keywordData.filter(
@@ -536,18 +548,43 @@ export default (props) => {
                           <button
                             onClick={(e) => {
                               requestLike(e, news.id);
+                              document
+                                .getElementById(`${news.id}_whiteThumb`)
+                                .classList.toggle("activate");
+
+                              document
+                                .getElementById(`${news.id}_blackThumb`)
+                                .classList.toggle("activate");
                             }}
                             style={{ all: "unset", cursor: "pointer" }}
                           >
-                            {/* {console.log(newsListCookie)} */}
+                            {newsListCookie.includes(news && news.id) ? (
+                              <>
+                                <ThumbDiv id={`${news.id}_whiteThumb`}>
+                                  <i className="far fa-thumbs-up"></i>
+                                </ThumbDiv>
 
-                            <ThumbDiv>
-                              {newsListCookie.includes(news && news.id) ? (
-                                <i className="fas fa-thumbs-up"></i>
-                              ) : (
-                                <i className="far fa-thumbs-up"></i>
-                              )}
-                            </ThumbDiv>
+                                <ThumbDiv
+                                  id={`${news.id}_blackThumb`}
+                                  className="activate"
+                                >
+                                  <i className="fas fa-thumbs-up"></i>
+                                </ThumbDiv>
+                              </>
+                            ) : (
+                              <>
+                                <ThumbDiv
+                                  id={`${news.id}_whiteThumb`}
+                                  className="activate"
+                                >
+                                  <i className="far fa-thumbs-up"></i>
+                                </ThumbDiv>
+
+                                <ThumbDiv id={`${news.id}_blackThumb`}>
+                                  <i className="fas fa-thumbs-up"></i>
+                                </ThumbDiv>
+                              </>
+                            )}
                           </button>
                           <p className="fake_data" style={{ display: "none" }}>
                             {news && news.id}

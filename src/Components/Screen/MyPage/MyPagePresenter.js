@@ -13,28 +13,38 @@ const Div = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  overflow: scroll;
+  overflow-y: scroll;
 `;
 
 const DivUserName = styled.div`
   width: 100%;
-  background-color: blue;
-  font-size: 40px;
+  /* background-color: blue; */
+  font-size: 30px;
   span {
-    color: purple;
+    font-size: 35px;
+    font-weight: bold;
   }
+  margin-bottom: 100px;
 `;
 
 const LeftSide = styled.div`
   width: 20%;
   height: 100%;
+  margin-top: 200px;
+  margin-right: 30px;
   display: flex;
+  flex-direction: column;
   align-items: center;
+  justify-content: flex-start;
 `;
 
 const RightSide = styled.div`
   width: 50%;
   height: 100%;
+  padding-top: 20px;
+  margin-left: 50px;
+  display: flex;
+  flex-direction: column;
 `;
 
 export default (props) => {
@@ -48,14 +58,19 @@ export default (props) => {
   return (
     <Div>
       <LeftSide>
+        <DivUserName>
+          <p>
+            <span>{username}</span> 님
+          </p>{" "}
+          안녕하세요!
+        </DivUserName>
         <RecommendNewsPresenter data={recommend_news} />
       </LeftSide>
       <RightSide>
-        <DivUserName>
-          <span>{username}</span> 님 안녕하세요!
-        </DivUserName>
         <ReadNewsPresenter data={read_news} />
+        <div style={{ marginBottom: "50px" }} />
         <LikeNewsPresenter data={liked_news} />
+        <div style={{ marginBottom: "50px" }} />
         <EnterLinkNewsPresenter data={enter_link_news} />
       </RightSide>
     </Div>

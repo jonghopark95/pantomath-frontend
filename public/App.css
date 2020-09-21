@@ -1,3 +1,7 @@
 .swiper-container-vertical > .swiper-pagination-bullets {
   top: 45% !important;
 }
+
+.deactivate {
+  display: none !important;
+}
