@@ -92,6 +92,8 @@ export default (props) => {
       (keyword) => keyword.importance === "very high"
     );
 
+    // iterate
+
     if (veryHighKeywordData.length < 10) {
       for (let count = 0; count < 10 / veryHighKeywordData.length; count++) {
         if (!newsDataLoading) {
