@@ -13,3 +13,4 @@
   - [x] Crawling 데이터는 임시로 Selenium 사용한거 사용... 후에 변경
 - [x] 라우팅 문제
 - [x] 키워드, 뉴스 최신화
+- [ ] on Testing
