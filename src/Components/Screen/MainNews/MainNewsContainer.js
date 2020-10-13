@@ -63,7 +63,6 @@ export default () => {
     const societyKw = resData.filter((data) => data.category === "사회");
     const cultureKw = resData.filter((data) => data.category === "문화");
     const internationalKw = resData.filter((data) => data.category === "국제");
-    const districtKw = resData.filter((data) => data.category === "지역");
     const sportsKw = resData.filter((data) => data.category === "스포츠");
     const itKw = resData.filter((data) => data.category === "IT 과학");
 
@@ -73,7 +72,6 @@ export default () => {
     keywordContainer["사회"] = societyKw;
     keywordContainer["문화"] = cultureKw;
     keywordContainer["국제"] = internationalKw;
-    keywordContainer["지역"] = districtKw;
     keywordContainer["스포츠"] = sportsKw;
     keywordContainer["IT 과학"] = itKw;
 

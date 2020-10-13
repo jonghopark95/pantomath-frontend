@@ -58,11 +58,6 @@ const TabList = [
     title: "국제",
   },
   {
-    link: "/topics/district",
-    imgTag: <i className="far fa-building"></i>,
-    title: "지역",
-  },
-  {
     link: "/topics/sports",
     imgTag: <i className="fas fa-running"></i>,
     title: "스포츠",
@@ -93,9 +88,6 @@ const currentLoc = () => {
       break;
     case "international":
       currentByKor = "국제";
-      break;
-    case "district":
-      currentByKor = "지역";
       break;
     case "sports":
       currentByKor = "스포츠";

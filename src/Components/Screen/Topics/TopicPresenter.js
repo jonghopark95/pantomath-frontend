@@ -404,9 +404,6 @@ export default (props) => {
       case "international":
         currentCategory = "국제";
         break;
-      case "district":
-        currentCategory = "지역";
-        break;
       case "sports":
         currentCategory = "스포츠";
         break;
