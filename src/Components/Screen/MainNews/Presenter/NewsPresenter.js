@@ -305,13 +305,12 @@ export default (props) => {
                         <span>{news && news.keyword}</span>
                       </KeywordLink>
 
-                      <button
+                      {/* <button
                         onClick={(e) => {
                           requestLike(e, news.id);
                         }}
                         style={{ all: "unset", cursor: "pointer" }}
                       >
-                        {/* {console.log(newsListCookie)} */}
 
                         <ThumbDiv>
                           {newsListCookie.includes(news && news.id) ? (
@@ -320,7 +319,7 @@ export default (props) => {
                             <i class="far fa-thumbs-up"></i>
                           )}
                         </ThumbDiv>
-                      </button>
+                      </button> */}
                       <p className="fake_data" style={{ display: "none" }}>
                         {news && news.id}
                       </p>
